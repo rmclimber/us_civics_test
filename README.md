@@ -1,32 +1,57 @@
 # US Civics Practice
 
-A local React + Go practice app for the USCIS **128 Civics Questions and Answers (2025 version)**. It provides study-guide order, a shuffled full set, or a unique randomized subset; multiple-choice and self-graded oral practice; a detailed review; and clear treatment of questions with changing/location-specific answers.
+## Download and Run
 
-## Progress and privacy
+1. Open this repository's **Releases** page.
+2. Download the latest `CivicsPractice-v*-windows-x64.zip` file.
+3. Extract the ZIP to a folder you can find again.
+4. Double-click `USCivicsPractice.exe`.
+5. Study in the browser window that opens.
 
-Completed attempts, the current unfinished session, and preferences are saved locally in the platform user configuration directory under `USCivicsPractice/history.json`. The file is schema-versioned, written through a temporary file and atomic rename, and is never silently reset if it is corrupt or incompatible. History records include the question-bank revision and a result/answer snapshot, so past reviews remain understandable after question data changes.
+No installation, account, or internet connection is needed after download. The app only runs a local server on your computer (`127.0.0.1`) and never uploads your data. Keep the small console window open while studying; close it or press **Ctrl+C** to close the app.
 
-The app has light, dark, and system themes; saved default practice size and mode; a simple state preference; resumable practice; a history list; and a lightweight progress chart. Oral practice intentionally has no recording or automatic speech grading: reveal the official answers, then mark your own response correct or incorrect.
+Windows may show a SmartScreen notice because this free application is not code-signed. Read the notice and use only a download you trust; do not disable Windows security protections.
 
-## Run in development
+To update, download and extract a newer ZIP, then run its executable. Your progress is preserved separately at `%APPDATA%\USCivicsPractice\history.json`. To back it up, close the app and copy that file somewhere safe. The file contains completed attempts, an unfinished session, theme, and practice preferences.
 
-Prerequisites: Go 1.22+ and Node 20+.
+## About this study tool
 
-1. In `frontend`, run `pnpm install`, then `pnpm dev`.
-2. In a second terminal, run `cd backend` then `go run .`.
-3. Open the Vite address (normally `http://localhost:5173`). API requests are proxied to Go on `127.0.0.1:8080`.
+US Civics Practice is an independent study tool, not an official USCIS product. It includes the [USCIS 2025 128 Civics Questions and Answers](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf). The real civics examination is oral. Some official answers can change over time or depend on where you live, so verify changing answers with [USCIS test updates](https://www.uscis.gov/citizenship/testupdates) before your interview.
 
-## Production build
+The app supports a 20-question multiple-choice practice quiz, full 128-question sessions, study-order and shuffled practice, and self-graded oral practice. Incorrect multiple-choice responses show all officially acceptable answers.
 
-Run `pnpm build` in `frontend`; it writes compiled assets to `backend/frontend/dist`. Then run `go build -o us-civics-practice.exe .` in `backend`. The executable serves UI and API together at `http://127.0.0.1:8080`.
+## Developer notes
 
-## Validation and tests
+Prerequisites: Go 1.22+, Node 20+, and Corepack/pnpm.
 
-- `go test ./...` from `backend` checks quiz selection, grading and validation paths.
-- The Go server validates `data/questions-2025.json` at startup. It requires IDs 1-128, nonempty official answers, valid counts/metadata, at least three distinct distractors per question, and no distractor that duplicates any accepted answer.
+For local development:
 
-## Question bank provenance
+```powershell
+cd frontend
+corepack pnpm install
+corepack pnpm dev
+# in a second PowerShell window
+cd backend
+go run .
+```
 
-`data/questions-2025.json` was generated from USCIS M-1778 (09/25), downloaded from the official [2025 PDF](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf). It contains all 128 records in official order and the listed accepted-answer text. Question IDs 23, 29, 30, 38, 39, 57, 61, and 62 are tagged as changing or location-dependent and excluded from automatic scoring until local current-answer overrides are maintained. Check [USCIS test updates](https://www.uscis.gov/citizenship/testupdates) before an interview.
+The Vite development server proxies API requests to Go at `127.0.0.1:8080`.
 
-Each question has three reviewed, question-specific distractors. They are clearly separate from USCIS-approved answers and are intended solely for multiple-choice practice.
+Validate and test the backend:
+
+```powershell
+cd backend
+go test ./...
+```
+
+Build a reproducible Windows x64 release (frontend assets and question bank are compiled into the executable):
+
+```powershell
+.\scripts\build-release.ps1 -Version 1.0.0
+```
+
+The output is `release\CivicsPractice-v1.0.0-windows-x64.zip`. The GitHub Actions workflow runs these checks, packages the ZIP, and publishes it to GitHub Releases whenever a `v*` tag is pushed.
+
+## Privacy and data safety
+
+The application has no analytics, telemetry, or ordinary-use network calls. It binds only to the local loopback address and does not enable cross-origin API access. Local data is schema-versioned and saved atomically; an incompatible or corrupt history file is left unchanged and reported instead of being silently reset.

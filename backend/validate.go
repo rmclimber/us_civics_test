@@ -1,0 +1,8 @@
+package main
+
+import (
+ "errors"
+ "fmt"
+ "strings"
+)
+func validateBank(b QuestionBank) error { if len(b.Questions)!=128{return fmt.Errorf("expected 128 questions, got %d",len(b.Questions))}; seen:=map[int]bool{}; for _,q:=range b.Questions {if q.ID<1||q.ID>128||seen[q.ID]{return fmt.Errorf("invalid or duplicate question ID %d",q.ID)};seen[q.ID]=true;if strings.TrimSpace(q.Question)==""||len(q.AcceptableAnswers)==0{return fmt.Errorf("question %d is incomplete",q.ID)};if q.RequiredAnswerCount<1||q.RequiredAnswerCount>len(q.AcceptableAnswers){return fmt.Errorf("invalid required answer count for %d",q.ID)};if q.Category==""||q.Subcategory==""{return fmt.Errorf("category missing for %d",q.ID)}; answers:=map[string]bool{};for _,a:=range q.AcceptableAnswers{a=strings.TrimSpace(a);if a==""||answers[strings.ToLower(a)]{return fmt.Errorf("duplicate or empty accepted answer for %d",q.ID)};answers[strings.ToLower(a)]=true};if len(q.Distractors)<3{return fmt.Errorf("not enough distractors for %d",q.ID)};for _,d:=range q.Distractors{if strings.TrimSpace(d)==""||answers[strings.ToLower(strings.TrimSpace(d))]{return fmt.Errorf("invalid distractor for %d",q.ID)}};if q.DynamicAnswer!=nil && (q.DynamicAnswer.Status==""||q.DynamicAnswer.VerificationURL==""){return errors.New("invalid dynamic metadata")}};for id:=1;id<=128;id++{if !seen[id]{return fmt.Errorf("missing question ID %d",id)}};return nil }

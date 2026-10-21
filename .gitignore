@@ -1,0 +1,37 @@
+# Node / Vite dependencies and caches
+node_modules/
+frontend/node_modules/
+.pnpm-store/
+.npm/
+frontend/.vite/
+*.tsbuildinfo
+
+# Generated frontend assets (build before compiling the Go executable)
+backend/frontend/dist/*
+!backend/frontend/dist/.gitkeep
+
+# Go build and test artifacts
+.cache/
+backend/.cache/
+*.exe
+*.test
+*.out
+coverage.out
+
+# Local configuration and logs
+.env
+.env.*
+!.env.example
+*.log
+pnpm-debug.log*
+npm-debug.log*
+
+# Temporary source-extraction artifacts
+source.pdf
+source.txt
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

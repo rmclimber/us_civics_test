@@ -10,6 +10,9 @@ SOURCE = "https://www.uscis.gov/sites/default/files/document/questions-and-answe
 UPDATES = "https://www.uscis.gov/citizenship/testupdates"
 
 def clean(text):
+    # pypdf occasionally puts the page number in the same extracted text run
+    # as the final answer on a page (for example, "answer\\n7 of 19").
+    text = re.sub(r"(?:\\n|\n)\d+ of 19", "", text)
     return re.sub(r"\s+", " ", text).strip()
 
 def required_count(question):

@@ -17,10 +17,10 @@ Run `pnpm build` in `frontend`; it writes compiled assets to `backend/frontend/d
 ## Validation and tests
 
 - `go test ./...` from `backend` checks quiz selection, grading and validation paths.
-- The Go server validates `data/questions-2025.json` at startup. It requires IDs 1-128, nonempty official answers, valid counts/metadata, and non-overlapping distractors.
+- The Go server validates `data/questions-2025.json` at startup. It requires IDs 1-128, nonempty official answers, valid counts/metadata, at least three distinct distractors per question, and no distractor that duplicates any accepted answer.
 
 ## Question bank provenance
 
 `data/questions-2025.json` was generated from USCIS M-1778 (09/25), downloaded from the official [2025 PDF](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf). It contains all 128 records in official order and the listed accepted-answer text. Question IDs 23, 29, 30, 38, 39, 57, 61, and 62 are tagged as changing or location-dependent and excluded from automatic scoring until local current-answer overrides are maintained. Check [USCIS test updates](https://www.uscis.gov/citizenship/testupdates) before an interview.
 
-The current distractors are deliberately explicit non-answers, rather than borrowed civics facts that might accidentally be valid. Replacing them with reviewed, question-specific distractors is an appropriate content-quality follow-up.
+Each question has three reviewed, question-specific distractors. They are clearly separate from USCIS-approved answers and are intended solely for multiple-choice practice.

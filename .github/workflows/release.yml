@@ -27,15 +27,15 @@ jobs:
       - name: Install frontend dependencies
         working-directory: frontend
         run: pnpm install --frozen-lockfile
+      - name: Build frontend
+        working-directory: frontend
+        run: pnpm build
       - name: Validate question bank
         working-directory: backend
         run: go test ./... -run TestEmbeddedQuestionBank
       - name: Test application
         working-directory: backend
         run: go test ./...
-      - name: Build frontend
-        working-directory: frontend
-        run: pnpm build
       - name: Build Windows executable
         working-directory: backend
         shell: pwsh

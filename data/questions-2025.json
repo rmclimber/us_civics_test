@@ -267,7 +267,7 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Magna Carta of 1215",
+        "Treaty of Versailles",
         "The United Nations Charter",
         "The Louisiana Purchase treaty"
       ]
@@ -1008,9 +1008,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Five",
-        "Twelve",
-        "One hundred"
+        "Eight (8)",
+        "Twelve (12)",
+        "Fifteen (15)"
       ]
     },
     {
@@ -1025,9 +1025,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "One",
-        "Nine",
-        "All justices"
+        "One (1)",
+        "Three (3)",
+        "Seven (7)"
       ]
     },
     {
@@ -1783,8 +1783,8 @@
       "dynamicAnswer": null,
       "distractors": [
         "Revolutionary War",
-        "World War I (1900s)",
-        "Korean War (1900s)"
+        "World War I",
+        "Korean War"
       ]
     },
     {

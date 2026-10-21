@@ -1,6 +1,12 @@
 # US Civics Practice
 
-A local React + Go practice app for the USCIS **128 Civics Questions and Answers (2025 version)**. It provides study-guide order, a shuffled full set, or a unique randomized subset; server-authoritative scoring; multi-answer controls; review; and clear treatment of questions with changing/location-specific answers.
+A local React + Go practice app for the USCIS **128 Civics Questions and Answers (2025 version)**. It provides study-guide order, a shuffled full set, or a unique randomized subset; multiple-choice and self-graded oral practice; a detailed review; and clear treatment of questions with changing/location-specific answers.
+
+## Progress and privacy
+
+Completed attempts, the current unfinished session, and preferences are saved locally in the platform user configuration directory under `USCivicsPractice/history.json`. The file is schema-versioned, written through a temporary file and atomic rename, and is never silently reset if it is corrupt or incompatible. History records include the question-bank revision and a result/answer snapshot, so past reviews remain understandable after question data changes.
+
+The app has light, dark, and system themes; saved default practice size and mode; a simple state preference; resumable practice; a history list; and a lightweight progress chart. Oral practice intentionally has no recording or automatic speech grading: reveal the official answers, then mark your own response correct or incorrect.
 
 ## Run in development
 

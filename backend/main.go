@@ -28,6 +28,7 @@ type server struct {
 	store    *dataStore
 	storeErr error
 }
+func (s *server) question(id int) *Question { for i:=range s.bank.Questions {if s.bank.Questions[i].ID==id{return &s.bank.Questions[i]}};return nil }
 
 func loadBank() (QuestionBank, error) {
 	var b QuestionBank
@@ -63,21 +64,41 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{"revision": s.bank.Revision, "total": len(s.bank.Questions), "officialSource": s.bank.OfficialSource, "updatesSource": s.bank.UpdatesSource})
 		return
 	case r.Method == "GET" && r.URL.Path == "/api/current":
-		writeJSON(w, 200, s.store.data.Current)
+		writeJSON(w, 200, s.store.active().Current)
 		return
 	case r.Method == "GET" && r.URL.Path == "/api/history":
-		writeJSON(w, 200, s.store.data.History)
+		writeJSON(w, 200, s.store.active().History)
 		return
 	case r.Method == "GET" && r.URL.Path == "/api/preferences":
-		writeJSON(w, 200, s.store.data.Preferences)
+		writeJSON(w, 200, s.store.active().Preferences)
 		return
+	case r.Method == "GET" && r.URL.Path == "/api/profiles":
+		writeJSON(w, 200, map[string]any{"activeProfileId":s.store.data.ActiveProfileID,"profiles":s.store.data.Profiles}); return
+	case r.Method == "GET" && r.URL.Path == "/api/current-answers":
+		p:=s.store.active(); out:=[]map[string]any{}; for id,info:=range currentAnswerInfo { rec,ok:=p.CurrentAnswers[id]; if !ok { rec=CurrentAnswerRecord{QuestionID:id,Status:"Unresolved",SourceURL:info.VerificationURL}; if a:=suggestedCurrentAnswer(id,p.Preferences);len(a)>0 {now:=time.Now();rec.Suggested=a;rec.SuggestionAt=&now;rec.Source="Bundled state-capital reference";rec.Status="Reverification recommended"} }; out=append(out,map[string]any{"info":info,"record":rec,"question":s.question(id)}) };writeJSON(w,200,out);return
+	case r.Method == "POST" && r.URL.Path == "/api/current-answers/check":
+		p:=s.store.active(); checked:=0; for id:=range currentAnswerInfo { if a:=suggestedCurrentAnswer(id,p.Preferences);len(a)>0 { now:=time.Now();r:=p.CurrentAnswers[id];r.QuestionID=id;r.Suggested=a;r.SuggestionAt=&now;r.Source="Bundled state-capital reference";r.SourceURL=currentAnswerInfo[id].VerificationURL;if r.Status==""{r.Status="Reverification recommended"};p.CurrentAnswers[id]=r;checked++ } };if err:=s.persist();err!=nil{writeJSON(w,500,map[string]string{"error":err.Error()});return};writeJSON(w,200,map[string]any{"checked":checked,"message":"State-capital reference refreshed. Other answers need your review on the linked official pages."});return
+	case r.Method == "POST" && r.URL.Path == "/api/profiles":
+		var in struct{Name string `json:"name"`};if json.NewDecoder(r.Body).Decode(&in)!=nil||strings.TrimSpace(in.Name)==""{writeJSON(w,400,map[string]string{"error":"a profile name is required"});return};p:=newProfile(strings.TrimSpace(in.Name));s.store.data.Profiles=append(s.store.data.Profiles,p);s.store.data.ActiveProfileID=p.ID;_ = s.persist();writeJSON(w,201,p);return
+	case r.Method == "PUT" && r.URL.Path == "/api/profiles/active":
+		var in struct{ID string `json:"id"`};if json.NewDecoder(r.Body).Decode(&in)!=nil{writeJSON(w,400,map[string]string{"error":"invalid profile"});return};found:=false;for i:=range s.store.data.Profiles{if s.store.data.Profiles[i].ID==in.ID{s.store.data.Profiles[i].LastUsedAt=time.Now();found=true}};if !found{writeJSON(w,404,map[string]string{"error":"profile not found"});return};s.store.data.ActiveProfileID=in.ID;_ = s.persist();writeJSON(w,200,s.store.active());return
+	case r.Method == "PUT" && strings.HasPrefix(r.URL.Path,"/api/profiles/"):
+		id:=strings.TrimPrefix(r.URL.Path,"/api/profiles/");var in struct{Name string `json:"name"`};if json.NewDecoder(r.Body).Decode(&in)!=nil||strings.TrimSpace(in.Name)==""{writeJSON(w,400,map[string]string{"error":"a profile name is required"});return};for i:=range s.store.data.Profiles{if s.store.data.Profiles[i].ID==id{s.store.data.Profiles[i].Name=strings.TrimSpace(in.Name);if err:=s.persist();err!=nil{writeJSON(w,500,map[string]string{"error":err.Error()});return};writeJSON(w,200,s.store.data.Profiles[i]);return}};writeJSON(w,404,map[string]string{"error":"profile not found"});return
+	case r.Method == "DELETE" && strings.HasPrefix(r.URL.Path,"/api/profiles/"):
+		id:=strings.TrimPrefix(r.URL.Path,"/api/profiles/");if len(s.store.data.Profiles)==1{writeJSON(w,400,map[string]string{"error":"keep at least one profile"});return};next:=[]Profile{};found:=false;for _,p:=range s.store.data.Profiles{if p.ID==id{found=true}else{next=append(next,p)}};if !found{writeJSON(w,404,map[string]string{"error":"profile not found"});return};s.store.data.Profiles=next;if s.store.data.ActiveProfileID==id{s.store.data.ActiveProfileID=next[0].ID};if err:=s.persist();err!=nil{writeJSON(w,500,map[string]string{"error":err.Error()});return};writeJSON(w,200,map[string]string{"status":"deleted"});return
+	case r.Method == "GET" && r.URL.Path == "/api/profile-export":
+		writeJSON(w,200,map[string]any{"schemaVersion":1,"exportedAt":time.Now(),"profile":s.store.active()});return
+	case r.Method == "POST" && r.URL.Path == "/api/profile-import":
+		r.Body=http.MaxBytesReader(w,r.Body,5<<20);var in struct{SchemaVersion int `json:"schemaVersion"`;Profile Profile `json:"profile"`};if json.NewDecoder(r.Body).Decode(&in)!=nil||in.SchemaVersion!=1||strings.TrimSpace(in.Profile.Name)==""{writeJSON(w,400,map[string]string{"error":"This backup is not recognized or is too large."});return};in.Profile.ID=newID();in.Profile.CreatedAt=time.Now();in.Profile.LastUsedAt=time.Now();if in.Profile.History==nil{in.Profile.History=[]Attempt{}};if in.Profile.CurrentAnswers==nil{in.Profile.CurrentAnswers=map[int]CurrentAnswerRecord{}};s.store.data.Profiles=append(s.store.data.Profiles,in.Profile);s.store.data.ActiveProfileID=in.Profile.ID;if err:=s.persist();err!=nil{writeJSON(w,500,map[string]string{"error":err.Error()});return};writeJSON(w,201,in.Profile);return
+	case r.Method == "PUT" && r.URL.Path == "/api/current-answers":
+		var rec CurrentAnswerRecord;if json.NewDecoder(r.Body).Decode(&rec)!=nil||currentAnswerInfo[rec.QuestionID].QuestionID==0||len(rec.Answers)==0{writeJSON(w,400,map[string]string{"error":"valid question and answer required"});return};info:=currentAnswerInfo[rec.QuestionID];rec.Source="Manually confirmed";rec.Status="Manually confirmed";rec.SourceURL=info.VerificationURL;now:=time.Now();rec.VerifiedAt=&now;s.store.active().CurrentAnswers[rec.QuestionID]=rec;if err:=s.persist();err!=nil{writeJSON(w,500,map[string]string{"error":err.Error()});return};writeJSON(w,200,rec);return
 	case r.Method == "PUT" && r.URL.Path == "/api/preferences":
 		var p Preferences
 		if json.NewDecoder(r.Body).Decode(&p) != nil || (p.Theme != "light" && p.Theme != "dark" && p.Theme != "system") || (p.PracticeMode != "multiple-choice" && p.PracticeMode != "oral") || p.DefaultQuizSize < 1 || p.DefaultQuizSize > 128 {
 			writeJSON(w, 400, map[string]string{"error": "invalid preferences"})
 			return
 		}
-		s.store.data.Preferences = p
+		s.store.active().Preferences = p
 		if err := s.persist(); err != nil {
 			writeJSON(w, 500, map[string]string{"error": err.Error()})
 			return
@@ -94,14 +115,14 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 			writeJSON(w, 400, map[string]string{"error": "invalid request"})
 			return
 		}
-		q, err := makeSession(s.bank, in.Order, in.Mode, in.Count)
+		q, err := makeProfileSession(s.bank, in.Order, in.Mode, in.Count, s.store.active())
 		if err != nil {
 			writeJSON(w, 400, map[string]string{"error": err.Error()})
 			return
 		}
-		s.mu.Lock()
+		q.ProfileID=s.store.data.ActiveProfileID;s.mu.Lock()
 		s.sessions[q.ID] = q
-		s.store.data.Current = q
+		s.store.active().Current = q
 		s.mu.Unlock()
 		if err = s.persist(); err != nil {
 			writeJSON(w, 500, map[string]string{"error": err.Error()})
@@ -122,6 +143,7 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 404, map[string]string{"error": "quiz not found"})
 		return
 	}
+	if session.ProfileID != s.store.data.ActiveProfileID { writeJSON(w, 404, map[string]string{"error":"quiz belongs to another profile"}); return }
 	if r.Method == "GET" && len(parts) == 3 {
 		writeJSON(w, 200, session)
 		return
@@ -192,8 +214,8 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		for i, q := range session.Questions {
 			order[i] = q.ID
 		}
-		s.store.data.History = append([]Attempt{{ID: session.ID, CompletedAt: session.Created, Mode: session.Mode, QuestionCount: len(order), QuestionOrder: order, BankRevision: s.bank.Revision, Result: result}}, s.store.data.History...)
-		s.store.data.Current = nil
+		p:=s.store.active();p.History = append([]Attempt{{ID: session.ID, CompletedAt: session.Created, Mode: session.Mode, QuestionCount: len(order), QuestionOrder: order, BankRevision: s.bank.Revision, Result: result}}, p.History...)
+		p.Current = nil
 		if err := s.persist(); err != nil {
 			writeJSON(w, 500, map[string]string{"error": err.Error()})
 			return
@@ -298,11 +320,11 @@ func main() {
 		log.Printf("History unavailable: %v", storeErr)
 	}
 	if st == nil {
-		st = &dataStore{data: AppData{SchemaVersion: dataSchemaVersion, Preferences: defaultPreferences()}}
+		p:=newProfile("My Practice"); st = &dataStore{data: AppData{SchemaVersion: dataSchemaVersion, ActiveProfileID:p.ID, Profiles:[]Profile{p}}}
 	}
 	s := &server{bank: b, sessions: map[string]*Session{}, store: st, storeErr: storeErr}
-	if st.data.Current != nil && !st.data.Current.Submitted {
-		s.sessions[st.data.Current.ID] = st.data.Current
+	if st.active().Current != nil && !st.active().Current.Submitted {
+		s.sessions[st.active().Current.ID] = st.active().Current
 	}
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/", s.api)

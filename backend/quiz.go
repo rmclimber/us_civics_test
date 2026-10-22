@@ -48,6 +48,7 @@ type PresentedQuestion struct {
 }
 type Session struct {
 	ID         string                  `json:"id"`
+	ProfileID  string                  `json:"profileId"`
 	Mode       string                  `json:"mode"`
 	Order      string                  `json:"order"`
 	Questions  []Question              `json:"questions"`
@@ -56,6 +57,7 @@ type Session struct {
 	Responses  map[int][]string        `json:"responses"`
 	SelfGrades map[int]bool            `json:"selfGrades"`
 	Revealed   map[int]bool            `json:"revealed"`
+	ResolvedDynamic map[int]bool        `json:"resolvedDynamic,omitempty"`
 	Submitted  bool                    `json:"submitted"`
 	Created    time.Time               `json:"created"`
 }
@@ -128,8 +130,18 @@ func makeSession(bank QuestionBank, order, practiceMode string, count int) (*Ses
 	if err != nil {
 		return nil, err
 	}
-	s := &Session{ID: newID(), Mode: practiceMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, Created: time.Now()}
+	return makeSessionQuestions(qs, order, practiceMode, nil)
+}
+func makeProfileSession(bank QuestionBank, order, practiceMode string, count int, p *Profile) (*Session,error) {
+	eligible:=[]Question{}
+	resolved:=map[int][]string{}
+	for _,q:=range bank.Questions { if q.DynamicAnswer==nil { eligible=append(eligible,q);continue }; r,ok:=p.CurrentAnswers[q.ID];if ok&&r.Status=="Manually confirmed"&&r.VerifiedAt!=nil&&time.Since(*r.VerifiedAt)<=30*24*time.Hour&&len(r.Answers)>0 {q.AcceptableAnswers=append([]string(nil),r.Answers...);eligible=append(eligible,q);resolved[q.ID]=q.AcceptableAnswers} }
+	if count>len(eligible){count=len(eligible)};if count<1{return nil,errors.New("no questions are available")}; var qs []Question;if order=="study"{qs=eligible[:count]}else if order=="random"||order=="subset"{qs=shuffled(eligible)[:count]}else{return nil,errors.New("invalid order")};return makeSessionQuestions(qs,order,practiceMode,resolved)
+}
+func makeSessionQuestions(qs []Question, order, practiceMode string, resolved map[int][]string) (*Session,error) {
+	s := &Session{ID: newID(), Mode: practiceMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, ResolvedDynamic:map[int]bool{}, Created: time.Now()}
 	for _, q := range qs {
+		if _,ok:=resolved[q.ID];ok{s.ResolvedDynamic[q.ID]=true}
 		p := PresentedQuestion{ID: q.ID, Question: q.Question, Category: q.Category, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer != nil}
 		if practiceMode == "multiple-choice" {
 			answers := shuffledAnswers(q.AcceptableAnswers, q.RequiredAnswerCount)
@@ -239,7 +251,7 @@ func grade(s *Session) (QuizResult, error) {
 			if _, ok := s.SelfGrades[q.ID]; !ok {
 				return QuizResult{}, errors.New("self-grade every question before finishing")
 			}
-		} else if q.DynamicAnswer == nil && len(s.Responses[q.ID]) != q.RequiredAnswerCount {
+		} else if (q.DynamicAnswer == nil || s.ResolvedDynamic[q.ID]) && len(s.Responses[q.ID]) != q.RequiredAnswerCount {
 			return QuizResult{}, errors.New("all stable questions must be answered before submitting")
 		}
 	}
@@ -262,7 +274,7 @@ func grade(s *Session) (QuizResult, error) {
 			if correct {
 				result.Correct++
 			}
-		} else if q.DynamicAnswer == nil {
+		} else if q.DynamicAnswer == nil || s.ResolvedDynamic[q.ID] {
 			result.ScoredTotal++
 			correct = len(ids) == len(s.Correct[q.ID])
 			for _, id := range ids {

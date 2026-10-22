@@ -1,0 +1,17 @@
+package main
+
+import "strings"
+
+type CurrentAnswerInfo struct { QuestionID int `json:"questionId"`; Subject string `json:"subject"`; Location string `json:"location"`; Automatic bool `json:"automatic"`; VerificationURL string `json:"verificationUrl"`; Events string `json:"events"`; Freshness string `json:"freshness"` }
+var currentAnswerInfo=map[int]CurrentAnswerInfo{
+23:{23,"U.S. senators","state",false,"https://www.senate.gov/senators/","Regular elections, vacancies, resignations, deaths, and state appointments. Election winners are not current until they take office.","Review after any change; otherwise every 24 hours."},
+29:{29,"U.S. representative","state and congressional district",false,"https://www.house.gov/representatives/find-your-representative","New Congress, special elections, vacancies, and redistricting. A general-election winner normally takes office when the new Congress begins in January.","Review after a location or district change and before an interview."},
+30:{30,"Speaker of the House", "none",false,"https://www.house.gov/leadership","A new House, resignation, vacancy, or House election for Speaker.","Review every 24 hours and after a House leadership change."},
+38:{38,"President", "none",false,"https://www.whitehouse.gov/administration/","Election and inauguration, resignation, death, removal, or succession. Election day alone does not change the officeholder.","Review every 24 hours; inauguration is January 20."},
+39:{39,"Vice President", "none",false,"https://www.whitehouse.gov/administration/","Election and inauguration, resignation, death, removal, succession, or constitutional appointment.","Review every 24 hours; inauguration is January 20."},
+57:{57,"Chief Justice of the United States", "none",false,"https://www.supremecourt.gov/about/justices.aspx","Retirement, death, resignation, or appointment and confirmation of a successor.","Review every 24 hours and after a Court announcement."},
+61:{61,"Governor", "state",false,"https://www.usa.gov/state-governments","State election and inauguration, resignation, death, removal, or succession. Election day is not necessarily the effective date.","Review every 24 hours and after state news or a move."},
+62:{62,"State capital", "state",true,"https://www.usa.gov/state-governments","A move to another state; capital changes are exceptionally rare.","Bundled reference; review after changing state."},
+}
+var stateCapitals=map[string]string{"AL":"Montgomery","AK":"Juneau","AZ":"Phoenix","AR":"Little Rock","CA":"Sacramento","CO":"Denver","CT":"Hartford","DE":"Dover","FL":"Tallahassee","GA":"Atlanta","HI":"Honolulu","IA":"Des Moines","ID":"Boise","IL":"Springfield","IN":"Indianapolis","KS":"Topeka","KY":"Frankfort","LA":"Baton Rouge","MA":"Boston","MD":"Annapolis","ME":"Augusta","MI":"Lansing","MN":"Saint Paul","MO":"Jefferson City","MS":"Jackson","MT":"Helena","NC":"Raleigh","ND":"Bismarck","NE":"Lincoln","NH":"Concord","NJ":"Trenton","NM":"Santa Fe","NV":"Carson City","NY":"Albany","OH":"Columbus","OK":"Oklahoma City","OR":"Salem","PA":"Harrisburg","RI":"Providence","SC":"Columbia","SD":"Pierre","TN":"Nashville","TX":"Austin","UT":"Salt Lake City","VA":"Richmond","VT":"Montpelier","WA":"Olympia","WI":"Madison","WV":"Charleston","WY":"Cheyenne"}
+func suggestedCurrentAnswer(id int,p Preferences) []string { if id==62 { return []string{stateCapitals[strings.ToUpper(strings.TrimSpace(p.State))]} }; return nil }

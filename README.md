@@ -10,6 +10,18 @@
 
 No installation, account, or internet connection is needed after download. The app only runs a local server on your computer (`127.0.0.1`) and never uploads your data. Keep the small console window open while studying; close it or press **Ctrl+C** to close the app.
 
+### Optional: use another device on your home network
+
+By default, the app is available only on the computer where it is running. To make it available on your private local network, open PowerShell in the app folder and run:
+
+```powershell
+.\USCivicsPractice.exe --lan
+```
+
+The console prints an address such as `http://192.168.1.25:8080`; enter that address in a browser on your phone or tablet. You can choose another port with `--lan --port 8081`.
+
+When Windows asks about firewall access, allow it on **Private networks** only. Do not use router port forwarding or enable Public-network access: the app has no sign-in, and anyone allowed onto the network can access the shared study data while it is running. Avoid using the app from multiple devices at the same time, because they share one active profile and unfinished quiz.
+
 Windows may show a SmartScreen notice because this free application is not code-signed. Read the notice and use only a download you trust; do not disable Windows security protections.
 
 To update, download and extract a newer ZIP, then run its executable. Your progress is preserved separately at `%APPDATA%\USCivicsPractice\history.json`. Stage 4 migrates existing progress into a default profile automatically. Use **Settings → Save a backup** before moving computers or deleting local application data, and **Restore from backup** to bring it back as a separate profile.

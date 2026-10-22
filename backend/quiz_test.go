@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func sampleBank() QuestionBank {
 	return QuestionBank{Questions: []Question{{ID: 1, Question: "One?", Category: "Test", Subcategory: "One", AcceptableAnswers: []string{"Yes", "Yep"}, RequiredAnswerCount: 1, Distractors: []string{"No", "Never", "Maybe"}}, {ID: 2, Question: "Name two?", Category: "Test", Subcategory: "Two", AcceptableAnswers: []string{"A", "B", "C"}, RequiredAnswerCount: 2, Distractors: []string{"D", "E", "F"}}}}
@@ -121,5 +124,43 @@ func TestDisplayOptionText(t *testing.T) {
 	}
 	if got := displayOptionText("Doubled the size of the United States (Louisiana Purchase)"); got != "Doubled the size of the United States" {
 		t.Fatalf("unexpected display text: %q", got)
+	}
+}
+
+func TestDistractorsUseDisplayText(t *testing.T) {
+	bank := QuestionBank{Questions: []Question{{
+		ID:                  36,
+		Question:            "How many years?",
+		Category:            "Test",
+		AcceptableAnswers:   []string{"Four (4) years"},
+		RequiredAnswerCount: 1,
+		Distractors:         []string{"Two (2) years", "Six (6) years", "Ten (10) years"},
+	}}}
+	s, err := makeSession(bank, "study", "multiple-choice", 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, option := range s.Presented[0].Options {
+		if option.Text == "Four (4) years" || option.Text == "Two (2) years" || option.Text == "Six (6) years" || option.Text == "Ten (10) years" {
+			t.Fatalf("option was not normalized: %q", option.Text)
+		}
+	}
+}
+
+func TestAllMultipleChoiceOptionsUseNormalizedText(t *testing.T) {
+	bank, err := loadBank()
+	if err != nil {
+		t.Fatal(err)
+	}
+	session, err := makeSession(bank, "study", "multiple-choice", len(bank.Questions))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, question := range session.Presented {
+		for _, option := range question.Options {
+			if strings.Contains(option.Text, "(") || strings.Contains(option.Text, ")") {
+				t.Fatalf("question %d has an unnormalized option: %q", question.ID, option.Text)
+			}
+		}
 	}
 }

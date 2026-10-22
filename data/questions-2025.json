@@ -129,9 +129,9 @@
       "special6520": true,
       "dynamicAnswer": null,
       "distractors": [
-        "Ten amendments",
-        "Twenty amendments",
-        "Fifty amendments"
+        "Ten (10) amendments",
+        "Twenty (20) amendments",
+        "Fifty (50) amendments"
       ]
     },
     {
@@ -393,9 +393,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Fifty",
-        "Two hundred",
-        "Four hundred thirty-five"
+        "Fifty (50)",
+        "Two hundred (200)",
+        "Four hundred thirty-five (435)"
       ]
     },
     {
@@ -410,9 +410,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Two years",
-        "Four years",
-        "Eight years"
+        "Two (2) years",
+        "Four (4) years",
+        "Eight (8) years"
       ]
     },
     {
@@ -450,9 +450,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "One hundred",
-        "Fifty",
-        "Five hundred"
+        "One hundred (100)",
+        "Fifty (50)",
+        "Five hundred (500)"
       ]
     },
     {
@@ -467,9 +467,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Four years",
-        "Six years",
-        "Eight years"
+        "Four (4) years",
+        "Six (6) years",
+        "Eight (8) years"
       ]
     },
     {
@@ -501,9 +501,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "One",
-        "Three",
-        "The number set by population"
+        "One (1)",
+        "Three (3)",
+        "Four (4)"
       ]
     },
     {
@@ -673,9 +673,9 @@
       "special6520": true,
       "dynamicAnswer": null,
       "distractors": [
-        "Two years",
-        "Six years",
-        "Ten years"
+        "Two (2) years",
+        "Six (6) years",
+        "Ten (10) years"
       ]
     },
     {
@@ -1128,9 +1128,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Declare war (a federal-only power)",
-        "Print paper money (a federal-only power)",
-        "Make treaties (a federal-only power)"
+        "Declare war",
+        "Print paper money",
+        "Make treaties"
       ]
     },
     {
@@ -1455,8 +1455,8 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Europeans",
-        "Native Americans (people already in America)",
+        "European colonists",
+        "Colonial merchants",
         "Asian immigrants"
       ]
     },
@@ -1474,9 +1474,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "The Civil War (1861–1865)",
+        "The Civil War",
         "The War of 1812",
-        "World War I (1914–1918)"
+        "World War I"
       ]
     },
     {
@@ -1602,8 +1602,8 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Declaration of Independence (1776)",
-        "Articles of Confederation (earlier government)",
+        "Declaration of Independence",
+        "Articles of Confederation",
         "Bill of Rights"
       ]
     },
@@ -1800,8 +1800,8 @@
       "dynamicAnswer": null,
       "distractors": [
         "Revolutionary War",
-        "War of 1812 (an earlier U.S. war)",
-        "Spanish-American War (1898)"
+        "War of 1812",
+        "Spanish-American War"
       ]
     },
     {
@@ -1846,7 +1846,7 @@
       "distractors": [
         "First President",
         "Writer of the Declaration",
-        "First Secretary of the Treasury (Hamilton)"
+        "First Secretary of the Treasury"
       ]
     },
     {
@@ -1882,8 +1882,8 @@
       "dynamicAnswer": null,
       "distractors": [
         "Revolutionary War",
-        "War of 1812 (an earlier U.S. war)",
-        "World War II (1940s)"
+        "War of 1812",
+        "World War II"
       ]
     },
     {
@@ -1940,9 +1940,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Abigail Adams, a colonial-era figure",
-        "Eleanor Roosevelt, a 1900s figure",
-        "Rosa Parks, a 1900s figure"
+        "Abigail Adams",
+        "Eleanor Roosevelt",
+        "Rosa Parks"
       ]
     },
     {
@@ -1961,9 +1961,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "American Revolution (1700s)",
-        "War of 1812 (1800s)",
-        "Civil War (1800s)"
+        "American Revolution",
+        "War of 1812",
+        "Civil War"
       ]
     },
     {
@@ -2000,7 +2000,7 @@
       "dynamicAnswer": null,
       "distractors": [
         "1776",
-        "1870 (men’s voting rights)",
+        "1870",
         "1965"
       ]
     },
@@ -2072,8 +2072,8 @@
       "dynamicAnswer": null,
       "distractors": [
         "The Boston Tea Party",
-        "The Civil War (1860s)",
-        "The attack on the Pentagon in 2001"
+        "The Civil War",
+        "The attack on the Pentagon"
       ]
     },
     {
@@ -2092,7 +2092,7 @@
       "dynamicAnswer": null,
       "distractors": [
         "Wrote the Declaration of Independence",
-        "First Secretary of the Treasury (Hamilton)",
+        "First Secretary of the Treasury",
         "President during the Civil War"
       ]
     },
@@ -2254,9 +2254,9 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "American Revolution (1700s)",
-        "War of 1812 (1800s)",
-        "Spanish-American War (1898)"
+        "American Revolution",
+        "War of 1812",
+        "Spanish-American War"
       ]
     },
     {
@@ -2353,7 +2353,7 @@
       "special6520": false,
       "dynamicAnswer": null,
       "distractors": [
-        "Washington, D.C. (the national capital)",
+        "Washington, D.C.",
         "Boston Harbor",
         "San Francisco Bay"
       ]

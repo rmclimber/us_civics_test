@@ -433,9 +433,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "Any senator from another state",
-        "The President",
-        "The Chief Justice"
+        "Barack Obama",
+        "George W. Bush",
+        "Hillary Clinton",
+        "Mike Pence",
+        "Nancy Pelosi",
+        "Condoleezza Rice"
       ]
     },
     {
@@ -542,9 +545,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "Any member of the Senate",
-        "A U.S. senator from another state",
-        "The governor of any state"
+        "Barack Obama",
+        "George W. Bush",
+        "Kamala Harris",
+        "Mike Pence",
+        "John Roberts",
+        "Condoleezza Rice"
       ]
     },
     {
@@ -565,9 +571,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "The Chief Justice",
-        "The Secretary of State",
-        "The Vice President"
+        "Barack Obama",
+        "John Roberts",
+        "Kamala Harris",
+        "Mike Pence",
+        "Hillary Clinton",
+        "Nancy Pelosi"
       ]
     },
     {
@@ -714,9 +723,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "The Speaker of the House",
-        "The Chief Justice",
-        "A former president automatically"
+        "George W. Bush",
+        "Barack Obama",
+        "Bill Clinton",
+        "Hillary Clinton",
+        "John Roberts",
+        "Nancy Pelosi"
       ]
     },
     {
@@ -737,9 +749,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "The Secretary of State",
-        "The Speaker of the House",
-        "A former vice president automatically"
+        "Barack Obama",
+        "George W. Bush",
+        "Hillary Clinton",
+        "Nancy Pelosi",
+        "John Roberts",
+        "Condoleezza Rice"
       ]
     },
     {
@@ -1085,9 +1100,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "The President",
-        "The Speaker of the House",
-        "The Attorney General"
+        "Barack Obama",
+        "George W. Bush",
+        "Hillary Clinton",
+        "Kamala Harris",
+        "Nancy Pelosi",
+        "Mike Pence"
       ]
     },
     {
@@ -1168,9 +1186,12 @@
         "note": "This answer varies by current officeholder or the applicant's location. It is shown for study but excluded from automatic scoring."
       },
       "distractors": [
-        "The President",
-        "A U.S. senator from another state",
-        "The Chief Justice"
+        "Barack Obama",
+        "George W. Bush",
+        "Hillary Clinton",
+        "Mike Pence",
+        "Nancy Pelosi",
+        "John Roberts"
       ]
     },
     {

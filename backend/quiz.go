@@ -47,19 +47,19 @@ type PresentedQuestion struct {
 	Options             []Option `json:"options,omitempty"`
 }
 type Session struct {
-	ID         string                  `json:"id"`
-	ProfileID  string                  `json:"profileId"`
-	Mode       string                  `json:"mode"`
-	Order      string                  `json:"order"`
-	Questions  []Question              `json:"questions"`
-	Presented  []PresentedQuestion     `json:"presented"`
-	Correct    map[int]map[string]bool `json:"correct"`
-	Responses  map[int][]string        `json:"responses"`
-	SelfGrades map[int]bool            `json:"selfGrades"`
-	Revealed   map[int]bool            `json:"revealed"`
-	ResolvedDynamic map[int]bool        `json:"resolvedDynamic,omitempty"`
-	Submitted  bool                    `json:"submitted"`
-	Created    time.Time               `json:"created"`
+	ID              string                  `json:"id"`
+	ProfileID       string                  `json:"profileId"`
+	Mode            string                  `json:"mode"`
+	Order           string                  `json:"order"`
+	Questions       []Question              `json:"questions"`
+	Presented       []PresentedQuestion     `json:"presented"`
+	Correct         map[int]map[string]bool `json:"correct"`
+	Responses       map[int][]string        `json:"responses"`
+	SelfGrades      map[int]bool            `json:"selfGrades"`
+	Revealed        map[int]bool            `json:"revealed"`
+	ResolvedDynamic map[int]bool            `json:"resolvedDynamic,omitempty"`
+	Submitted       bool                    `json:"submitted"`
+	Created         time.Time               `json:"created"`
 }
 type ResultItem struct {
 	Question            PresentedQuestion `json:"question"`
@@ -132,16 +132,43 @@ func makeSession(bank QuestionBank, order, practiceMode string, count int) (*Ses
 	}
 	return makeSessionQuestions(qs, order, practiceMode, nil)
 }
-func makeProfileSession(bank QuestionBank, order, practiceMode string, count int, p *Profile) (*Session,error) {
-	eligible:=[]Question{}
-	resolved:=map[int][]string{}
-	for _,q:=range bank.Questions { if q.DynamicAnswer==nil { eligible=append(eligible,q);continue }; r,ok:=p.CurrentAnswers[q.ID];if ok&&r.Status=="Manually confirmed"&&r.VerifiedAt!=nil&&time.Since(*r.VerifiedAt)<=30*24*time.Hour&&len(r.Answers)>0 {q.AcceptableAnswers=append([]string(nil),r.Answers...);eligible=append(eligible,q);resolved[q.ID]=q.AcceptableAnswers} }
-	if count>len(eligible){count=len(eligible)};if count<1{return nil,errors.New("no questions are available")}; var qs []Question;if order=="study"{qs=eligible[:count]}else if order=="random"||order=="subset"{qs=shuffled(eligible)[:count]}else{return nil,errors.New("invalid order")};return makeSessionQuestions(qs,order,practiceMode,resolved)
+func makeProfileSession(bank QuestionBank, order, practiceMode string, count int, p *Profile) (*Session, error) {
+	eligible := []Question{}
+	resolved := map[int][]string{}
+	for _, q := range bank.Questions {
+		if q.DynamicAnswer == nil {
+			eligible = append(eligible, q)
+			continue
+		}
+		r, ok := p.CurrentAnswers[q.ID]
+		if ok && r.Status == "Manually confirmed" && r.VerifiedAt != nil && time.Since(*r.VerifiedAt) <= 30*24*time.Hour && len(r.Answers) > 0 {
+			q.AcceptableAnswers = append([]string(nil), r.Answers...)
+			eligible = append(eligible, q)
+			resolved[q.ID] = q.AcceptableAnswers
+		}
+	}
+	if count > len(eligible) {
+		count = len(eligible)
+	}
+	if count < 1 {
+		return nil, errors.New("no questions are available")
+	}
+	var qs []Question
+	if order == "study" {
+		qs = eligible[:count]
+	} else if order == "random" || order == "subset" {
+		qs = shuffled(eligible)[:count]
+	} else {
+		return nil, errors.New("invalid order")
+	}
+	return makeSessionQuestions(qs, order, practiceMode, resolved)
 }
-func makeSessionQuestions(qs []Question, order, practiceMode string, resolved map[int][]string) (*Session,error) {
-	s := &Session{ID: newID(), Mode: practiceMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, ResolvedDynamic:map[int]bool{}, Created: time.Now()}
+func makeSessionQuestions(qs []Question, order, practiceMode string, resolved map[int][]string) (*Session, error) {
+	s := &Session{ID: newID(), Mode: practiceMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, ResolvedDynamic: map[int]bool{}, Created: time.Now()}
 	for _, q := range qs {
-		if _,ok:=resolved[q.ID];ok{s.ResolvedDynamic[q.ID]=true}
+		if _, ok := resolved[q.ID]; ok {
+			s.ResolvedDynamic[q.ID] = true
+		}
 		p := PresentedQuestion{ID: q.ID, Question: q.Question, Category: q.Category, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer != nil}
 		if practiceMode == "multiple-choice" {
 			answers := shuffledAnswers(q.AcceptableAnswers, q.RequiredAnswerCount)
@@ -152,8 +179,22 @@ func makeSessionQuestions(qs []Question, order, practiceMode string, resolved ma
 				options = append(options, Option{ID: id, Text: displayOptionText(a)})
 				correct[id] = true
 			}
-			for i := 0; len(options) < max(4, len(answers)+3); i++ {
-				options = append(options, Option{ID: optionID(), Text: q.Distractors[i]})
+			distractors := append([]string(nil), q.Distractors...)
+			mathrand.Shuffle(len(distractors), func(i, j int) { distractors[i], distractors[j] = distractors[j], distractors[i] })
+			for _, distractor := range distractors {
+				matchesAnswer := false
+				for _, answer := range q.AcceptableAnswers {
+					if strings.EqualFold(displayOptionText(distractor), displayOptionText(answer)) {
+						matchesAnswer = true
+						break
+					}
+				}
+				if !matchesAnswer {
+					options = append(options, Option{ID: optionID(), Text: displayOptionText(distractor)})
+				}
+				if len(options) >= max(4, len(answers)+3) {
+					break
+				}
 			}
 			mathrand.Shuffle(len(options), func(i, j int) { options[i], options[j] = options[j], options[i] })
 			p.Options = options

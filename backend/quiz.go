@@ -99,10 +99,26 @@ func optionID() string { return newID()[:10] }
 func displayOptionText(answer string) string {
 	if strings.HasPrefix(answer, "(") {
 		if end := strings.Index(answer, ") "); end > 1 {
-			return answer[1:end] + " " + answer[end+2:]
+			answer = answer[1:end] + " " + answer[end+2:]
 		}
 	}
-	return answer
+	var text strings.Builder
+	depth := 0
+	for _, r := range answer {
+		switch r {
+		case '(':
+			depth++
+		case ')':
+			if depth > 0 {
+				depth--
+			}
+		default:
+			if depth == 0 {
+				text.WriteRune(r)
+			}
+		}
+	}
+	return strings.Join(strings.Fields(text.String()), " ")
 }
 func makeSession(bank QuestionBank, order, practiceMode string, count int) (*Session, error) {
 	if practiceMode != "multiple-choice" && practiceMode != "oral" {

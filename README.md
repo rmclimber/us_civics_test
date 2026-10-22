@@ -12,13 +12,21 @@ No installation, account, or internet connection is needed after download. The a
 
 Windows may show a SmartScreen notice because this free application is not code-signed. Read the notice and use only a download you trust; do not disable Windows security protections.
 
-To update, download and extract a newer ZIP, then run its executable. Your progress is preserved separately at `%APPDATA%\USCivicsPractice\history.json`. To back it up, close the app and copy that file somewhere safe. The file contains completed attempts, an unfinished session, theme, and practice preferences.
+To update, download and extract a newer ZIP, then run its executable. Your progress is preserved separately at `%APPDATA%\USCivicsPractice\history.json`. Stage 4 migrates existing progress into a default profile automatically. Use **Settings → Save a backup** before moving computers or deleting local application data, and **Restore from backup** to bring it back as a separate profile.
 
 ## About this study tool
 
 US Civics Practice is an independent study tool, not an official USCIS product. It includes the [USCIS 2025 128 Civics Questions and Answers](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf). The real civics examination is oral. Some official answers can change over time or depend on where you live, so verify changing answers with [USCIS test updates](https://www.uscis.gov/citizenship/testupdates) before your interview.
 
 The app supports a 20-question multiple-choice practice quiz, full 128-question sessions, study-order and shuffled practice, and self-graded oral practice. Incorrect multiple-choice responses show all officially acceptable answers.
+
+## Current answers, profiles, and backups
+
+**Current Answers** lists the eight civics questions whose answer can change: U.S. senators, U.S. representative, Speaker, President, Vice President, Chief Justice, governor, and state capital. Use the direct official links in that screen to verify an answer and save a manually confirmed response for the selected profile. Officeholder pages are intentionally not scraped automatically: an official page can change format or be ambiguous, and the app must not mistake an election winner for a current officeholder. State capitals use a small bundled reference.
+
+Profiles keep their own location, settings, quiz history, unfinished practice, and current answers. Select or create one in Settings. Set your two-letter state and, if known, congressional district; the app will never infer a representative without a district.
+
+Backups are regular JSON downloads containing the selected profile's progress and settings. Keep them private: they contain your study history. Restoring a backup always creates a new profile, so it does not overwrite existing progress.
 
 ## Developer notes
 

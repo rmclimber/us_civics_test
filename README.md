@@ -1,46 +1,66 @@
 # US Civics Practice
 
-## Download and Run
+US Civics Practice is a Windows study aid for the **2025 USCIS 128-question civics test**. It lets you practice all 128 questions in study or shuffled order, take a smaller practice set, and use an oral self-grading mode that better resembles the real interview. It is an independent project and **not** an official USCIS product.
 
-1. Open this repository's **Releases** page.
-2. Download the latest `CivicsPractice-v*-windows-x64.zip` file.
-3. Extract the ZIP to a folder you can find again.
-4. Double-click `USCivicsPractice.exe`.
+## Download and run on Windows
+
+1. Open the repository's [Releases](https://github.com/rmclimber/us_civics_test/releases) page.
+2. Under the release you want, download `CivicsPractice-v*-windows-x64.zip`.
+3. In File Explorer, right-click the downloaded ZIP and choose **Extract All**.
+4. Open the extracted folder and double-click `USCivicsPractice.exe`.
 5. Study in the browser window that opens.
 
-No installation, account, or internet connection is needed after download. The app only runs a local server on your computer (`127.0.0.1`) and never uploads your data. Keep the small console window open while studying; close it or press **Ctrl+C** to close the app.
+No developer tools or account are required. The app runs locally on your computer. It normally needs no internet connection after it has been downloaded, but opening official-source links and any optional online functionality requires an internet connection.
+
+Keep the small console window open while studying. To close the application, close that console window or press **Ctrl+C** in it; then close the browser tab if it remains open.
+
+Windows may show a SmartScreen notice because the executable is not assumed to be code-signed. Read the notice, verify that the download came from this project's Releases page, and follow your organization's or Windows security guidance. Do not disable security protections.
 
 ### Optional: use another device on your home network
 
-By default, the app is available only on the computer where it is running. To make it available on your private local network, open PowerShell in the app folder and run:
+By default, the app is available only on the computer where it is running. To make it available on a private local network, open PowerShell in the extracted app folder and run:
 
 ```powershell
 .\USCivicsPractice.exe --lan
 ```
 
-The console prints an address such as `http://192.168.1.25:8080`; enter that address in a browser on your phone or tablet. You can choose another port with `--lan --port 8081`.
+The console prints an address such as `http://192.168.1.25:8080`; enter it in a browser on your phone or tablet. You can choose a port with `--lan --port 8081`. If Windows asks about firewall access, allow it on **Private networks** only. Do not set up router port forwarding or enable Public-network access. The app has no sign-in; devices allowed onto the private network can access its shared study data while it is running. Avoid simultaneous use from multiple devices.
 
-When Windows asks about firewall access, allow it on **Private networks** only. Do not use router port forwarding or enable Public-network access: the app has no sign-in, and anyone allowed onto the network can access the shared study data while it is running. Avoid using the app from multiple devices at the same time, because they share one active profile and unfinished quiz.
+## Using the app
 
-Windows may show a SmartScreen notice because this free application is not code-signed. Read the notice and use only a download you trust; do not disable Windows security protections.
+The app offers 20-question multiple-choice practice by default, full 128-question sessions, study-order or shuffled questions, and oral, self-graded practice. Incorrect multiple-choice responses show the accepted answers.
 
-To update, download and extract a newer ZIP, then run its executable. Your progress is preserved separately at `%APPDATA%\USCivicsPractice\history.json`. Stage 4 migrates existing progress into a default profile automatically. Use **Settings → Save a backup** before moving computers or deleting local application data, and **Restore from backup** to bring it back as a separate profile.
+### Changing answers
 
-## About this study tool
+Some civics answers can change, including officeholders and your state capital. Open **Current** in the app, follow the direct official links, and manually confirm the answers before they are included in scored practice. The app does not scrape official pages or independently verify your entries. Review these answers before your interview and consult [USCIS test updates](https://www.uscis.gov/citizenship/testupdates).
 
-US Civics Practice is an independent study tool, not an official USCIS product. It includes the [USCIS 2025 128 Civics Questions and Answers](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf). The real civics examination is oral. Some official answers can change over time or depend on where you live, so verify changing answers with [USCIS test updates](https://www.uscis.gov/citizenship/testupdates) before your interview.
+### Profiles, history, and backups
 
-The app supports a 20-question multiple-choice practice quiz, full 128-question sessions, study-order and shuffled practice, and self-graded oral practice. Incorrect multiple-choice responses show all officially acceptable answers.
+Profiles separately store their settings, selected location, current answers, unfinished practice, and completed-study history on this computer. Create or switch profiles in **Settings**. The app will not infer a congressional representative without a district.
 
-## Current answers, profiles, and backups
+In **Settings → Backup and restore**, choose **Save a backup** to download a JSON copy of the selected profile. To restore one, choose **Restore from backup** and select the JSON file. Restoration creates a new profile and does not overwrite existing ones. Keep backup files private and copy them somewhere safe before moving computers: local data can be lost through device failure, deletion, or reset and should be backed up.
 
-**Current Answers** lists the eight civics questions whose answer can change: U.S. senators, U.S. representative, Speaker, President, Vice President, Chief Justice, governor, and state capital. Use the direct official links in that screen to verify an answer and save a manually confirmed response for the selected profile. Officeholder pages are intentionally not scraped automatically: an official page can change format or be ambiguous, and the app must not mistake an election winner for a current officeholder. State capitals use a small bundled reference.
+## Important information and disclaimers
 
-Profiles keep their own location, settings, quiz history, unfinished practice, and current answers. Select or create one in Settings. Set your two-letter state and, if known, congressional district; the app will never infer a representative without a district.
+This application is an independent study aid, not an official USCIS product. It includes the [USCIS 2025 128 Civics Questions and Answers](https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf) as source material; USCIS-authored materials remain subject to their own terms, and third-party software remains subject to its own licenses. Nothing here claims exclusive ownership of those materials.
 
-Backups are regular JSON downloads containing the selected profile's progress and settings. Keep them private: they contain your study history. Restoring a backup always creates a new profile, so it does not overwrite existing progress.
+No guarantee is made that the content is accurate, complete, current, or that using the app will lead to examination success. Dynamic answers can become outdated. Consult the linked official government sources, including [USCIS test updates](https://www.uscis.gov/citizenship/testupdates), before relying on an answer for an immigration interview.
 
-## Developer notes
+To the extent permitted by applicable law, the application is provided **as-is**, without warranties of accuracy, reliability, security, or fitness for a particular purpose. It has not been independently security-audited. User study history and profile data are stored locally; they are not guaranteed against loss and should be backed up. No unsupported privacy or security guarantees are made.
+
+## License and third-party notices
+
+This project is **source-available, not OSI-approved open source**. It is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). In plain language, you may use, modify, and share it for noncommercial purposes; commercial use requires separate permission from the copyright holder.
+
+Copyright 2026 Rick Morris. For commercial permission, open a [GitHub issue](https://github.com/rmclimber/us_civics_test/issues) or contact the project owner at `rmorris.code@gmail.com`.
+
+The distributed application includes [third-party notices](THIRD_PARTY_NOTICES.md) for React, React DOM, and Lucide React. Those components use permissive third-party licenses and do not change the noncommercial license for the application's original code.
+
+## Problems and support
+
+Report bugs or release-package problems through the [GitHub issue tracker](https://github.com/rmclimber/us_civics_test/issues). For question or answer corrections, include the question number and an official source link where possible.
+
+## Developer and release notes
 
 Prerequisites: Go 1.22+, Node 20+, and Corepack/pnpm.
 
@@ -57,21 +77,17 @@ go run .
 
 The Vite development server proxies API requests to Go at `127.0.0.1:8080`.
 
-Validate and test the backend:
+Run backend validation and tests:
 
 ```powershell
 cd backend
 go test ./...
 ```
 
-Build a reproducible Windows x64 release (frontend assets and question bank are compiled into the executable):
+Build a Windows x64 release; the frontend assets and question bank are compiled into the executable:
 
 ```powershell
-.\scripts\build-release.ps1 -Version 1.0.0
+.\scripts\build-release.ps1 -Version 0.9.0
 ```
 
-The output is `release\CivicsPractice-v1.0.0-windows-x64.zip`. The GitHub Actions workflow runs these checks, packages the ZIP, and publishes it to GitHub Releases whenever a `v*` tag is pushed.
-
-## Privacy and data safety
-
-The application has no analytics, telemetry, or ordinary-use network calls. It binds only to the local loopback address and does not enable cross-origin API access. Local data is schema-versioned and saved atomically; an incompatible or corrupt history file is left unchanged and reported instead of being silently reset.
+The output is `release\CivicsPractice-v0.9.0-windows-x64.zip`. It contains the executable, user instructions, this license, and third-party notices. The GitHub Actions workflow runs the frontend build, question-bank validation, and backend tests before packaging a tagged prerelease.

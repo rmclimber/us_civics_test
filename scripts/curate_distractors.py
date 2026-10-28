@@ -126,7 +126,7 @@ D = {
 115:["The Declaration of Independence was signed","A stock market crash occurred","The United States entered World War I"],
 116:["American Revolution","War of 1812","Spanish-American War"],
 117:["Viking","Roman","Norman"],
-118:["The printing press in medieval Europe","The compass in ancient China","The steam engine in Britain"],
+118:["Printing press","Compass","Steam engine"],
 119:["New York City","Philadelphia","Boston"],
 120:["Washington, D.C.","Boston Harbor","San Francisco Bay"],
 121:["They represent the three branches","They represent the Bill of Rights","They represent the first presidents"],

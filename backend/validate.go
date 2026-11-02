@@ -16,7 +16,7 @@ func validateBank(b QuestionBank) error {
 			return fmt.Errorf("invalid or duplicate question ID %d", q.ID)
 		}
 		seen[q.ID] = true
-		if strings.TrimSpace(q.Question) == "" || len(q.AcceptableAnswers) == 0 {
+		if strings.TrimSpace(q.Question) == "" || len(q.AcceptableAnswers) == 0 || strings.TrimSpace(q.Explanation) == "" {
 			return fmt.Errorf("question %d is incomplete", q.ID)
 		}
 		if q.RequiredAnswerCount < 1 || q.RequiredAnswerCount > len(q.AcceptableAnswers) {

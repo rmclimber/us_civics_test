@@ -76,7 +76,20 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, s.store.active().Current)
 		return
 	case r.Method == "GET" && r.URL.Path == "/api/history":
-		writeJSON(w, 200, s.store.active().History)
+		// Older attempts did not store explanations. Enrich their response without
+		// rewriting the saved record, preserving its original answers and score.
+		history := s.store.active().History
+		for i := range history {
+			for j := range history[i].Result.Items {
+				item := &history[i].Result.Items[j]
+				if item.Explanation == "" {
+					if q := s.question(item.Question.ID); q != nil {
+						item.Explanation = q.Explanation
+					}
+				}
+			}
+		}
+		writeJSON(w, 200, history)
 		return
 	case r.Method == "GET" && r.URL.Path == "/api/preferences":
 		writeJSON(w, 200, s.store.active().Preferences)
@@ -280,15 +293,16 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		return
 	case r.Method == "POST" && r.URL.Path == "/api/quizzes":
 		var in struct {
-			Order string `json:"order"`
-			Mode  string `json:"mode"`
-			Count int    `json:"count"`
+			Order       string `json:"order"`
+			Mode        string `json:"mode"`
+			GradingMode string `json:"gradingMode"`
+			Count       int    `json:"count"`
 		}
 		if json.NewDecoder(r.Body).Decode(&in) != nil {
 			writeJSON(w, 400, map[string]string{"error": "invalid request"})
 			return
 		}
-		q, err := makeProfileSession(s.bank, in.Order, in.Mode, in.Count, s.store.active())
+		q, err := makeProfileSession(s.bank, in.Order, in.Mode, in.GradingMode, in.Count, s.store.active())
 		if err != nil {
 			writeJSON(w, 400, map[string]string{"error": err.Error()})
 			return
@@ -346,6 +360,21 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{"responses": session.Responses})
 		return
 	}
+	if r.Method == "POST" && len(parts) == 5 && parts[3] == "submit-answer" {
+		var id int
+		_, _ = fmt.Sscanf(parts[4], "%d", &id)
+		correct, err := submitAnswer(session, id)
+		if err != nil {
+			writeJSON(w, 400, map[string]string{"error": err.Error()})
+			return
+		}
+		if err := s.persist(); err != nil {
+			writeJSON(w, 500, map[string]string{"error": err.Error()})
+			return
+		}
+		writeJSON(w, 200, map[string]any{"answerSubmitted": session.AnswerSubmitted, "correct": correct})
+		return
+	}
 	if r.Method == "POST" && len(parts) == 5 && parts[3] == "reveal" {
 		var id int
 		_, _ = fmt.Sscanf(parts[4], "%d", &id)
@@ -392,7 +421,7 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 			order[i] = q.ID
 		}
 		p := s.store.active()
-		p.History = append([]Attempt{{ID: session.ID, CompletedAt: session.Created, Mode: session.Mode, QuestionCount: len(order), QuestionOrder: order, BankRevision: s.bank.Revision, Result: result}}, p.History...)
+		p.History = append([]Attempt{{ID: session.ID, CompletedAt: session.Created, Mode: session.Mode, GradingMode: session.GradingMode, QuestionCount: len(order), QuestionOrder: order, BankRevision: s.bank.Revision, Result: result}}, p.History...)
 		p.Current = nil
 		if err := s.persist(); err != nil {
 			writeJSON(w, 500, map[string]string{"error": err.Error()})

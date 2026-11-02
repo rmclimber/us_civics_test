@@ -26,6 +26,7 @@ type Question struct {
 	Special6520         bool           `json:"special6520"`
 	DynamicAnswer       *DynamicAnswer `json:"dynamicAnswer"`
 	Distractors         []string       `json:"distractors"`
+	Explanation         string         `json:"explanation"`
 }
 type DynamicAnswer struct {
 	Kind            string  `json:"kind"`
@@ -45,11 +46,13 @@ type PresentedQuestion struct {
 	RequiredAnswerCount int      `json:"requiredAnswerCount"`
 	Dynamic             bool     `json:"dynamic"`
 	Options             []Option `json:"options,omitempty"`
+	Explanation         string   `json:"explanation,omitempty"`
 }
 type Session struct {
 	ID              string                  `json:"id"`
 	ProfileID       string                  `json:"profileId"`
 	Mode            string                  `json:"mode"`
+	GradingMode     string                  `json:"gradingMode,omitempty"`
 	Order           string                  `json:"order"`
 	Questions       []Question              `json:"questions"`
 	Presented       []PresentedQuestion     `json:"presented"`
@@ -57,6 +60,7 @@ type Session struct {
 	Responses       map[int][]string        `json:"responses"`
 	SelfGrades      map[int]bool            `json:"selfGrades"`
 	Revealed        map[int]bool            `json:"revealed"`
+	AnswerSubmitted map[int]bool            `json:"answerSubmitted,omitempty"`
 	ResolvedDynamic map[int]bool            `json:"resolvedDynamic,omitempty"`
 	Submitted       bool                    `json:"submitted"`
 	Created         time.Time               `json:"created"`
@@ -69,6 +73,7 @@ type ResultItem struct {
 	RequiredAnswerCount int               `json:"requiredAnswerCount"`
 	Dynamic             *DynamicAnswer    `json:"dynamicAnswer,omitempty"`
 	SelfGraded          bool              `json:"selfGraded"`
+	Explanation         string            `json:"explanation"`
 }
 type QuizResult struct {
 	Correct        int          `json:"correct"`
@@ -122,7 +127,7 @@ func displayOptionText(answer string) string {
 	}
 	return strings.Join(strings.Fields(text.String()), " ")
 }
-func makeSession(bank QuestionBank, order, practiceMode string, count int) (*Session, error) {
+func makeSession(bank QuestionBank, order, practiceMode, gradingMode string, count int) (*Session, error) {
 	if practiceMode != "multiple-choice" && practiceMode != "oral" {
 		return nil, errors.New("invalid practice mode")
 	}
@@ -130,9 +135,9 @@ func makeSession(bank QuestionBank, order, practiceMode string, count int) (*Ses
 	if err != nil {
 		return nil, err
 	}
-	return makeSessionQuestions(qs, order, practiceMode, nil)
+	return makeSessionQuestions(qs, order, practiceMode, gradingMode, nil)
 }
-func makeProfileSession(bank QuestionBank, order, practiceMode string, count int, p *Profile) (*Session, error) {
+func makeProfileSession(bank QuestionBank, order, practiceMode, gradingMode string, count int, p *Profile) (*Session, error) {
 	eligible := []Question{}
 	resolved := map[int][]string{}
 	for _, q := range bank.Questions {
@@ -161,15 +166,24 @@ func makeProfileSession(bank QuestionBank, order, practiceMode string, count int
 	} else {
 		return nil, errors.New("invalid order")
 	}
-	return makeSessionQuestions(qs, order, practiceMode, resolved)
+	return makeSessionQuestions(qs, order, practiceMode, gradingMode, resolved)
 }
-func makeSessionQuestions(qs []Question, order, practiceMode string, resolved map[int][]string) (*Session, error) {
-	s := &Session{ID: newID(), Mode: practiceMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, ResolvedDynamic: map[int]bool{}, Created: time.Now()}
+func makeSessionQuestions(qs []Question, order, practiceMode, gradingMode string, resolved map[int][]string) (*Session, error) {
+	if gradingMode == "" {
+		gradingMode = "at-end"
+	}
+	if practiceMode == "oral" {
+		gradingMode = "self-graded"
+	}
+	if gradingMode != "at-end" && gradingMode != "as-you-go" && gradingMode != "self-graded" {
+		return nil, errors.New("invalid grading mode")
+	}
+	s := &Session{ID: newID(), Mode: practiceMode, GradingMode: gradingMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, AnswerSubmitted: map[int]bool{}, ResolvedDynamic: map[int]bool{}, Created: time.Now()}
 	for _, q := range qs {
 		if _, ok := resolved[q.ID]; ok {
 			s.ResolvedDynamic[q.ID] = true
 		}
-		p := PresentedQuestion{ID: q.ID, Question: q.Question, Category: q.Category, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer != nil}
+		p := PresentedQuestion{ID: q.ID, Question: q.Question, Category: q.Category, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer != nil, Explanation: q.Explanation}
 		if practiceMode == "multiple-choice" {
 			answers := shuffledAnswers(q.AcceptableAnswers, q.RequiredAnswerCount)
 			options := make([]Option, 0, 4)
@@ -222,6 +236,9 @@ func updateResponse(s *Session, qid int, ids []string) error {
 	if s.Mode != "multiple-choice" {
 		return errors.New("answers are self-graded in oral practice")
 	}
+	if s.AnswerSubmitted[qid] {
+		return errors.New("answer has already been submitted")
+	}
 	var p *PresentedQuestion
 	for i := range s.Presented {
 		if s.Presented[i].ID == qid {
@@ -248,6 +265,36 @@ func updateResponse(s *Session, qid int, ids []string) error {
 	}
 	s.Responses[qid] = append([]string(nil), ids...)
 	return nil
+}
+func submitAnswer(s *Session, qid int) (bool, error) {
+	if s.Submitted || s.Mode != "multiple-choice" || s.GradingMode != "as-you-go" {
+		return false, errors.New("answer submission is not available")
+	}
+	if s.AnswerSubmitted[qid] {
+		return false, errors.New("answer has already been submitted")
+	}
+	var q *Question
+	for i := range s.Questions {
+		if s.Questions[i].ID == qid {
+			q = &s.Questions[i]
+			break
+		}
+	}
+	if q == nil {
+		return false, errors.New("question is not in this quiz")
+	}
+	ids := s.Responses[qid]
+	if len(ids) != q.RequiredAnswerCount {
+		return false, errors.New("select every required answer before submitting")
+	}
+	correct := len(ids) == len(s.Correct[qid])
+	for _, id := range ids {
+		if !s.Correct[qid][id] {
+			correct = false
+		}
+	}
+	s.AnswerSubmitted[qid] = true
+	return correct, nil
 }
 func selfGrade(s *Session, qid int, correct bool) error {
 	if s.Submitted {
@@ -292,7 +339,7 @@ func grade(s *Session) (QuizResult, error) {
 			if _, ok := s.SelfGrades[q.ID]; !ok {
 				return QuizResult{}, errors.New("self-grade every question before finishing")
 			}
-		} else if (q.DynamicAnswer == nil || s.ResolvedDynamic[q.ID]) && len(s.Responses[q.ID]) != q.RequiredAnswerCount {
+		} else if (q.DynamicAnswer == nil || s.ResolvedDynamic[q.ID]) && (len(s.Responses[q.ID]) != q.RequiredAnswerCount || (s.GradingMode == "as-you-go" && !s.AnswerSubmitted[q.ID])) {
 			return QuizResult{}, errors.New("all stable questions must be answered before submitting")
 		}
 	}
@@ -327,7 +374,7 @@ func grade(s *Session) (QuizResult, error) {
 				result.Correct++
 			}
 		}
-		result.Items = append(result.Items, ResultItem{Question: p, Selected: selected, Correct: correct, AcceptedAnswers: q.AcceptableAnswers, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer, SelfGraded: s.Mode == "oral"})
+		result.Items = append(result.Items, ResultItem{Question: p, Selected: selected, Correct: correct, AcceptedAnswers: q.AcceptableAnswers, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer, SelfGraded: s.Mode == "oral", Explanation: q.Explanation})
 	}
 	if result.ScoredTotal > 0 {
 		result.Percentage = float64(result.Correct) * 100 / float64(result.ScoredTotal)

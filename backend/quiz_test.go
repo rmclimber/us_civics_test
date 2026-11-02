@@ -20,7 +20,7 @@ func TestSelectionAndStudyOrder(t *testing.T) {
 	}
 }
 func TestMultiAnswerGrading(t *testing.T) {
-	s, e := makeSession(sampleBank(), "study", "multiple-choice", 2)
+	s, e := makeSession(sampleBank(), "study", "multiple-choice", "at-end", 2)
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -41,7 +41,7 @@ func TestMultiAnswerGrading(t *testing.T) {
 	}
 }
 func TestMultiAnswerCanBeSavedIncrementally(t *testing.T) {
-	s, e := makeSession(sampleBank(), "study", "multiple-choice", 2)
+	s, e := makeSession(sampleBank(), "study", "multiple-choice", "at-end", 2)
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -62,8 +62,39 @@ func TestMultiAnswerCanBeSavedIncrementally(t *testing.T) {
 		t.Fatalf("complete selection should save: %v", e)
 	}
 }
+
+func TestGradeAsYouGoRequiresExplicitSubmissionAndLocksAnswer(t *testing.T) {
+	s, err := makeSession(sampleBank(), "study", "multiple-choice", "as-you-go", 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	q := s.Presented[0]
+	var correctID string
+	for _, option := range q.Options {
+		if s.Correct[q.ID][option.ID] {
+			correctID = option.ID
+			break
+		}
+	}
+	if err = updateResponse(s, q.ID, []string{correctID}); err != nil {
+		t.Fatal(err)
+	}
+	if s.AnswerSubmitted[q.ID] {
+		t.Fatal("selecting an option must not submit it")
+	}
+	if _, err = grade(s); err == nil {
+		t.Fatal("grade-as-you-go questions must be explicitly submitted")
+	}
+	correct, err := submitAnswer(s, q.ID)
+	if err != nil || !correct {
+		t.Fatalf("submitted correct answer was not graded correctly: %v", err)
+	}
+	if err = updateResponse(s, q.ID, []string{}); err == nil {
+		t.Fatal("submitted answer must be locked")
+	}
+}
 func TestIncompleteAndStandardThreshold(t *testing.T) {
-	s, _ := makeSession(sampleBank(), "study", "multiple-choice", 2)
+	s, _ := makeSession(sampleBank(), "study", "multiple-choice", "at-end", 2)
 	if _, e := grade(s); e == nil {
 		t.Fatal("unanswered submission should fail")
 	}
@@ -86,9 +117,14 @@ func TestEmbeddedQuestionBank(t *testing.T) {
 	if len(b.Questions) != 128 {
 		t.Fatalf("want 128 questions, got %d", len(b.Questions))
 	}
+	for _, q := range b.Questions {
+		if strings.TrimSpace(q.Explanation) == "" {
+			t.Fatalf("question %d has no explanation", q.ID)
+		}
+	}
 }
 func TestOralPracticeRequiresRevealAndSelfGrade(t *testing.T) {
-	s, e := makeSession(sampleBank(), "study", "oral", 2)
+	s, e := makeSession(sampleBank(), "study", "oral", "at-end", 2)
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -136,7 +172,7 @@ func TestDistractorsUseDisplayText(t *testing.T) {
 		RequiredAnswerCount: 1,
 		Distractors:         []string{"Two (2) years", "Six (6) years", "Ten (10) years"},
 	}}}
-	s, err := makeSession(bank, "study", "multiple-choice", 1)
+	s, err := makeSession(bank, "study", "multiple-choice", "at-end", 1)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -152,7 +188,7 @@ func TestAllMultipleChoiceOptionsUseNormalizedText(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	session, err := makeSession(bank, "study", "multiple-choice", len(bank.Questions))
+	session, err := makeSession(bank, "study", "multiple-choice", "at-end", len(bank.Questions))
 	if err != nil {
 		t.Fatal(err)
 	}

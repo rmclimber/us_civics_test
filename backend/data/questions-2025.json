@@ -21,7 +21,8 @@
         "A hereditary monarchy",
         "A military dictatorship",
         "A government without a constitution"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Republic' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 2,
@@ -38,7 +39,8 @@
         "A presidential executive order",
         "A state constitution",
         "A congressional statute"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Constitution' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 3,
@@ -58,7 +60,8 @@
         "Creates a national religion",
         "Abolishes state governments",
         "Appoints every elected official"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Forms the government' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 4,
@@ -79,7 +82,8 @@
         "Only property owners govern",
         "Government belongs to a monarch",
         "Citizens have no role in government"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Self-government' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 5,
@@ -97,7 +101,8 @@
         "By a president acting alone",
         "By a Supreme Court decision alone",
         "By a simple vote in one state"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Amendments' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 6,
@@ -115,7 +120,8 @@
         "Only the powers of Congress",
         "Only state borders",
         "Only military duties"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'rights of Americans' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 7,
@@ -132,7 +138,8 @@
         "Ten (10) amendments",
         "Twenty (20) amendments",
         "Fifty (50) amendments"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Twenty-seven' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 8,
@@ -152,7 +159,8 @@
         "It created the first Congress",
         "It ended the Civil War",
         "It established the Supreme Court"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'It says America is free from British control.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 9,
@@ -169,7 +177,8 @@
         "The U.S. Constitution",
         "The Bill of Rights",
         "The Articles of Confederation"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Declaration of Independence' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 10,
@@ -191,7 +200,8 @@
         "Absolute monarchy and inherited power",
         "Government without elections",
         "Rule by a single political party"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Equality' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 11,
@@ -208,7 +218,8 @@
         "The U.S. Constitution",
         "The Federalist Papers",
         "The Gettysburg Address"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Declaration of Independence' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 12,
@@ -226,7 +237,8 @@
         "A command economy",
         "A feudal economy",
         "A barter-only economy"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Capitalism' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 13,
@@ -246,7 +258,8 @@
         "Elected officials are above the law",
         "Only citizens must obey laws",
         "Judges may ignore laws"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Everyone must follow the law.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 14,
@@ -270,7 +283,8 @@
         "Treaty of Versailles",
         "The United Nations Charter",
         "The Louisiana Purchase treaty"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Declaration of Independence' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 15,
@@ -289,7 +303,8 @@
         "To give one branch total power",
         "To eliminate elections",
         "To prevent laws from being reviewed"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'So one part does not become too powerful' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 16,
@@ -307,7 +322,8 @@
         "Federal, state, and local",
         "Military, police, and schools",
         "Democratic, Republican, and independent"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Legislative, executive, and judicial' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 17,
@@ -324,7 +340,8 @@
         "Legislative branch (the lawmaking branch)",
         "Judicial branch",
         "State government"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Executive branch' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 18,
@@ -343,7 +360,8 @@
         "The Supreme Court",
         "The President's Cabinet",
         "State legislatures"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Congress' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 19,
@@ -360,7 +378,8 @@
         "The Cabinet and Supreme Court",
         "The President and Vice President",
         "Governors and mayors"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Senate and House' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 20,
@@ -379,7 +398,8 @@
         "Approves local zoning only",
         "Runs all public schools",
         "Issues drivers' licenses"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Writes laws' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 21,
@@ -396,7 +416,8 @@
         "Fifty (50)",
         "Two hundred (200)",
         "Four hundred thirty-five (435)"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'One hundred' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 22,
@@ -413,7 +434,8 @@
         "Two (2) years",
         "Four (4) years",
         "Eight (8) years"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Six years' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 23,
@@ -439,7 +461,8 @@
         "Mike Pence",
         "Nancy Pelosi",
         "Condoleezza Rice"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Answers will vary. [District of Columbia residents and residents of U.S. territories should answer that D.C. has no U.S. senators.]' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 24,
@@ -456,7 +479,8 @@
         "One hundred (100)",
         "Fifty (50)",
         "Five hundred (500)"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Four hundred thirty-five' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 25,
@@ -473,7 +497,8 @@
         "Four (4) years",
         "Six (6) years",
         "Eight (8) years"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Two years' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 26,
@@ -490,7 +515,8 @@
         "To avoid elections",
         "To serve for life",
         "To represent foreign countries"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'To more closely follow public opinion' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 27,
@@ -507,7 +533,8 @@
         "One (1)",
         "Three (3)",
         "Four (4)"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Two' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 28,
@@ -525,7 +552,8 @@
         "To give large states more votes",
         "To eliminate the House",
         "To represent political parties equally"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Equal representation' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 29,
@@ -551,7 +579,8 @@
         "Mike Pence",
         "John Roberts",
         "Condoleezza Rice"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Answers will vary. [Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no representatives in Congress.]' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 30,
@@ -577,7 +606,8 @@
         "Mike Pence",
         "Hillary Clinton",
         "Nancy Pelosi"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Visit uscis.gov/citizenship/testupdates for the name of the Speaker of the House of Representatives.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 31,
@@ -595,7 +625,8 @@
         "Only the President",
         "All people nationwide",
         "A single congressional district"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens of their state' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 32,
@@ -612,7 +643,8 @@
         "The Supreme Court",
         "State governors",
         "The House of Representatives"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens from their state' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 33,
@@ -632,7 +664,8 @@
         "All residents of the United States",
         "Only the President",
         "A whole state regardless of district"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens in their district' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 34,
@@ -649,7 +682,8 @@
         "All citizens nationwide",
         "The President",
         "The Senate"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens from their district' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 35,
@@ -668,7 +702,8 @@
         "Each state’s land area",
         "The state’s age",
         "The number of counties"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'the state’s population' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 36,
@@ -685,7 +720,8 @@
         "Two (2) years",
         "Six (6) years",
         "Ten (10) years"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Four years' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 37,
@@ -703,7 +739,8 @@
         "The 10th Amendment",
         "The 14th Amendment",
         "The Electoral College"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'the 22nd Amendment' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 38,
@@ -729,7 +766,8 @@
         "Hillary Clinton",
         "John Roberts",
         "Nancy Pelosi"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Visit uscis.gov/citizenship/testupdates for the name of the President of the United States.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 39,
@@ -755,7 +793,8 @@
         "Nancy Pelosi",
         "John Roberts",
         "Condoleezza Rice"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Visit uscis.gov/citizenship/testupdates for the name of the Vice President of the United States.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 40,
@@ -772,7 +811,8 @@
         "The Speaker of the House immediately",
         "The Chief Justice",
         "The oldest senator"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The Vice President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 41,
@@ -794,7 +834,8 @@
         "Writes every law in Congress",
         "Decides every court case",
         "Sets every state tax rate"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Signs bills into law' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 42,
@@ -811,7 +852,8 @@
         "The Secretary of Defense",
         "The Chief Justice",
         "The highest-ranking general"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 43,
@@ -828,7 +870,8 @@
         "The Speaker of the House",
         "The Chief Justice",
         "A state governor"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 44,
@@ -845,7 +888,8 @@
         "The Supreme Court",
         "The Vice President alone",
         "The Speaker of the House"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 45,
@@ -862,7 +906,8 @@
         "The Senate alone",
         "The Chief Justice",
         "State governors"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 46,
@@ -881,7 +926,8 @@
         "The House of Representatives",
         "All state legislatures",
         "Private companies"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 47,
@@ -898,7 +944,8 @@
         "Writes court opinions",
         "Elects members of Congress",
         "Commands the military"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Advises the President' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 48,
@@ -936,7 +983,8 @@
         "Mayor of a city",
         "State chief justice",
         "Member of the House"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Attorney General' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 49,
@@ -954,7 +1002,8 @@
         "It chooses every senator",
         "It writes federal laws",
         "It appoints Supreme Court justices"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'It decides who is elected president.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 50,
@@ -972,7 +1021,8 @@
         "The President’s Cabinet",
         "A state legislature",
         "A city council"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Supreme Court' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 51,
@@ -992,7 +1042,8 @@
         "Prints money",
         "Commands the military",
         "Collects federal taxes"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Reviews laws' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 52,
@@ -1009,7 +1060,8 @@
         "The Senate",
         "The House of Representatives",
         "The Court of Appeals"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Supreme Court' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 53,
@@ -1026,7 +1078,8 @@
         "Eight (8)",
         "Twelve (12)",
         "Fifteen (15)"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Nine' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 54,
@@ -1043,7 +1096,8 @@
         "One (1)",
         "Three (3)",
         "Seven (7)"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Five' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 55,
@@ -1062,7 +1116,8 @@
         "Two-year terms",
         "Four-year terms",
         "Six-year terms"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'life' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 56,
@@ -1080,7 +1135,8 @@
         "To make them campaign often",
         "To put them under party control",
         "To let Congress replace them yearly"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'To be independent' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 57,
@@ -1106,7 +1162,8 @@
         "Kamala Harris",
         "Nancy Pelosi",
         "Mike Pence"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Visit uscis.gov/citizenship/testupdates for the name of the Chief Justice of the United States.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 58,
@@ -1128,7 +1185,8 @@
         "Issue marriage licenses",
         "Run local fire departments",
         "Set city zoning rules"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Print paper money' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 59,
@@ -1149,7 +1207,8 @@
         "Declare war",
         "Print paper money",
         "Make treaties"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Provide schooling and education' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 60,
@@ -1166,7 +1225,8 @@
         "It gives all power to Congress",
         "It abolishes state authority",
         "It sets presidential term limits"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'powers not given to the federal government belong to the states or to the people.' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 61,
@@ -1192,7 +1252,8 @@
         "Mike Pence",
         "Nancy Pelosi",
         "John Roberts"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Answers will vary. [District of Columbia residents should answer that D.C. does not have a governor.]' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 62,
@@ -1215,7 +1276,8 @@
         "Washington, D.C., for every state",
         "The nation’s capital",
         "The largest city in the state"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Answers will vary. [District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 63,
@@ -1235,7 +1297,8 @@
         "Only landowners may vote",
         "Voting requires a religious test",
         "Citizens must pay a poll tax"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens eighteen and older .' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 64,
@@ -1254,7 +1317,8 @@
         "All permanent residents",
         "All visitors",
         "Only elected officials"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Citizens' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 65,
@@ -1276,7 +1340,8 @@
         "A right to ignore laws",
         "A right to a royal title",
         "A right to vote in every election regardless of citizenship"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Freedom of expression' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 66,
@@ -1294,7 +1359,8 @@
         "A political party",
         "A state government",
         "A foreign country"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The United States' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 67,
@@ -1316,7 +1382,8 @@
         "Promise to rule another country",
         "Promise never to obey laws",
         "Promise to avoid civic duties"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Give up loyalty to other countries' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 68,
@@ -1335,7 +1402,8 @@
         "Buy citizenship from a private company",
         "Receive it by voting in an election",
         "Inherit it from any employer"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Be born in the United States, under the conditions set by the 14th Amendment' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 69,
@@ -1361,7 +1429,8 @@
         "Ignore elections",
         "Refuse to contact government",
         "Avoid all community groups"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Vote' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 70,
@@ -1383,7 +1452,8 @@
         "Ignore taxes",
         "Serve a foreign government",
         "Avoid obeying laws"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Vote' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 71,
@@ -1403,7 +1473,8 @@
         "Optional personal donations only",
         "To fund a foreign government",
         "To replace all state taxes"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Required by law' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 72,
@@ -1422,7 +1493,8 @@
         "It is required only after age 65",
         "It replaces voting",
         "It applies only to women"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Required by law' for this question. It is useful to connect this answer with the structure and principles of the federal government, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 73,
@@ -1443,7 +1515,8 @@
         "Mandatory military service for everyone",
         "A requirement to join a monarchy",
         "A ban on religious practice"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Freedom' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 74,
@@ -1461,7 +1534,8 @@
         "European monarchs",
         "The first U.S. senators",
         "People brought from Africa as enslaved people"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'American Indians' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 75,
@@ -1479,7 +1553,8 @@
         "European colonists",
         "Colonial merchants",
         "Asian immigrants"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Africans' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 76,
@@ -1498,7 +1573,8 @@
         "The Civil War",
         "The War of 1812",
         "World War I"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'American Revolution' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 77,
@@ -1524,7 +1600,8 @@
         "Britain gave colonists too much representation",
         "Britain allowed complete self-government",
         "Britain abolished all colonial taxes"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'High taxes' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 78,
@@ -1541,7 +1618,8 @@
         "George Washington",
         "Benjamin Franklin",
         "James Madison"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Jefferson' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 79,
@@ -1558,7 +1636,8 @@
         "July 4, 1787",
         "September 17, 1787",
         "January 1, 1776"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'July 4, 1776' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 80,
@@ -1580,7 +1659,8 @@
         "The Louisiana Purchase",
         "The Emancipation Proclamation",
         "The New Deal"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Bunker Hill' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 81,
@@ -1609,7 +1689,8 @@
         "California",
         "Texas",
         "Florida"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'New Hampshire' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 82,
@@ -1626,7 +1707,8 @@
         "Declaration of Independence",
         "Articles of Confederation",
         "Bill of Rights"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Constitution' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 83,
@@ -1646,7 +1728,8 @@
         "Thomas Jefferson",
         "George Washington",
         "Benjamin Franklin"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Madison' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 84,
@@ -1664,7 +1747,8 @@
         "They opposed the Constitution",
         "They ended the Revolutionary War",
         "They created the first political party"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'They helped people understand the Constitution.' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 85,
@@ -1685,7 +1769,8 @@
         "Led the Union Army at Gettysburg",
         "Was the first Chief Justice",
         "Signed the Emancipation Proclamation"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Founded the first free public libraries' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 86,
@@ -1705,7 +1790,8 @@
         "Wrote the Declaration of Independence",
         "Was the first Secretary of the Treasury",
         "Led the Confederacy"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '“Father of Our Country”' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 87,
@@ -1727,7 +1813,8 @@
         "Was the first President",
         "Commanded the Continental Army",
         "Was the first Chief Justice"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Writer of the Declaration of Independence' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 88,
@@ -1747,7 +1834,8 @@
         "Was the first President",
         "Wrote the Declaration of Independence",
         "Was the first Secretary of the Treasury"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '“Father of the Constitution”' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 89,
@@ -1768,7 +1856,8 @@
         "Was the first President",
         "Wrote the Gettysburg Address",
         "Led the Confederate Army"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'First Secretary of the Treasury' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 90,
@@ -1786,7 +1875,8 @@
         "Alaska Territory",
         "Oregon Territory",
         "Florida Territory"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Louisiana Territory' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 91,
@@ -1806,7 +1896,8 @@
         "Revolutionary War",
         "World War I",
         "Korean War"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'War of 1812' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 92,
@@ -1823,7 +1914,8 @@
         "Revolutionary War",
         "War of 1812",
         "Spanish-American War"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The Civil War' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 93,
@@ -1847,7 +1939,8 @@
         "Boston Tea Party",
         "Louisiana Purchase",
         "Moon landing"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Fort Sumter' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 94,
@@ -1868,7 +1961,8 @@
         "First President",
         "Writer of the Declaration",
         "First Secretary of the Treasury"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Freed the slaves' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 95,
@@ -1888,7 +1982,8 @@
         "Created the Bill of Rights",
         "Ended all wars",
         "Gave women the vote"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Freed the slaves' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 96,
@@ -1905,7 +2000,8 @@
         "Revolutionary War",
         "War of 1812",
         "World War II"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The Civil War' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 97,
@@ -1922,7 +2018,8 @@
         "1st Amendment",
         "10th Amendment",
         "19th Amendment"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '14th Amendment' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 98,
@@ -1942,7 +2039,8 @@
         "Before the American Revolution",
         "Before the Constitution",
         "Only after World War II"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'After the Civil War' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 99,
@@ -1964,7 +2062,8 @@
         "Abigail Adams",
         "Eleanor Roosevelt",
         "Rosa Parks"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Susan B. Anthony' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 100,
@@ -1985,7 +2084,8 @@
         "American Revolution",
         "War of 1812",
         "Civil War"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'World War I' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 101,
@@ -2004,7 +2104,8 @@
         "To purchase the Louisiana Territory",
         "To end the Civil War",
         "To respond to Pearl Harbor"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Because Germany attacked U.S. ships' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 102,
@@ -2023,7 +2124,8 @@
         "1776",
         "1870",
         "1965"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '1920' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 103,
@@ -2040,7 +2142,8 @@
         "A short economic boom",
         "A military alliance",
         "A constitutional amendment"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Longest economic recession in modern history' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 104,
@@ -2059,7 +2162,8 @@
         "1776",
         "1865",
         "1945"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '1929' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 105,
@@ -2076,7 +2180,8 @@
         "Abraham Lincoln",
         "Dwight Eisenhower",
         "George Washington"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Roosevelt' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 106,
@@ -2096,7 +2201,8 @@
         "The Boston Tea Party",
         "The Civil War",
         "The attack on the Pentagon"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Pearl Harbor' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 107,
@@ -2116,7 +2222,8 @@
         "Wrote the Declaration of Independence",
         "First Secretary of the Treasury",
         "President during the Civil War"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'General during World War II' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 108,
@@ -2135,7 +2242,8 @@
         "United Kingdom",
         "France",
         "Mexico"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Soviet Union' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 109,
@@ -2153,7 +2261,8 @@
         "The Louisiana Purchase",
         "Colonial taxation",
         "The Great Depression"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Communism' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 110,
@@ -2170,7 +2279,8 @@
         "To gain new territory in Europe",
         "To stop the spread of capitalism",
         "To respond to Pearl Harbor"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'To stop the spread of communism' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 111,
@@ -2187,7 +2297,8 @@
         "To gain territory in South America",
         "To stop the spread of capitalism",
         "To respond to the Boston Tea Party"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'To stop the spread of communism' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 112,
@@ -2204,7 +2315,8 @@
         "Created the Constitution",
         "Ended the Revolutionary War",
         "Established the first Congress"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Fought to end racial discrimination' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 113,
@@ -2223,7 +2335,8 @@
         "Led the Continental Army",
         "Wrote the Constitution",
         "Served as first President"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Fought for civil rights' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 114,
@@ -2240,7 +2353,8 @@
         "To end the Civil War",
         "To respond to Pearl Harbor",
         "To gain Alaska"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'To force the Iraqi military from Kuwait' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 115,
@@ -2260,7 +2374,8 @@
         "The Declaration of Independence was signed",
         "A stock market crash occurred",
         "The United States entered World War I"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Terrorists attacked the United States' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 116,
@@ -2279,7 +2394,8 @@
         "American Revolution",
         "War of 1812",
         "Spanish-American War"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'War on Terror' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 117,
@@ -2320,7 +2436,8 @@
         "Viking",
         "Roman",
         "Norman"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Apache' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 118,
@@ -2343,7 +2460,8 @@
         "Printing press",
         "Compass",
         "Steam engine"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Light bulb' for this question. It is useful to connect this answer with a major development in United States history, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 119,
@@ -2360,7 +2478,8 @@
         "New York City",
         "Philadelphia",
         "Boston"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Washington, D.C.' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 120,
@@ -2378,7 +2497,8 @@
         "Washington, D.C.",
         "Boston Harbor",
         "San Francisco Bay"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'New York' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 121,
@@ -2396,7 +2516,8 @@
         "They represent the three branches",
         "They represent the Bill of Rights",
         "They represent the first presidents"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as '13 original colonies' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 122,
@@ -2415,7 +2536,8 @@
         "They represent the original colonies",
         "They represent congressional districts",
         "They represent the amendments"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'one star for each state' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 123,
@@ -2432,7 +2554,8 @@
         "America the Beautiful",
         "My Country, 'Tis of Thee",
         "The Battle Hymn of the Republic"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'The Star-Spangled Banner' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 124,
@@ -2450,7 +2573,8 @@
         "Many states, many governments",
         "One country under a king",
         "Freedom through military rule"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'Out of many, one' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 125,
@@ -2468,7 +2592,8 @@
         "A holiday honoring military veterans",
         "The day the Constitution was signed",
         "A state holiday only"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'A holiday to celebrate U.S. independence' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 126,
@@ -2495,7 +2620,8 @@
         "State school holidays",
         "Religious holidays from one faith only",
         "Local city observances only"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'New Year’s Day' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 127,
@@ -2512,7 +2638,8 @@
         "A holiday honoring living veterans",
         "A holiday celebrating U.S. independence",
         "A holiday marking a presidential inauguration"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'A holiday to honor soldiers who died in military service' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     },
     {
       "id": 128,
@@ -2530,7 +2657,8 @@
         "A holiday celebrating the first colonies",
         "A holiday honoring people who died in service",
         "A holiday marking the Constitution’s adoption"
-      ]
+      ],
+      "explanation": "USCIS accepts answers such as 'A holiday to honor people in the military' for this question. It is useful to connect this answer with a shared national symbol, holiday, or civic tradition, so you can recall both the official response and the civic idea behind it."
     }
   ]
 }

@@ -49,6 +49,7 @@ func loadBank() (QuestionBank, error) {
 	if err != nil {
 		return b, err
 	}
+	applyCuratedExplanations(&b)
 	return b, validateBank(b)
 }
 func writeJSON(w http.ResponseWriter, code int, v any) {
@@ -72,6 +73,11 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 	case r.Method == "GET" && r.URL.Path == "/api/metadata":
 		writeJSON(w, 200, map[string]any{"revision": s.bank.Revision, "total": len(s.bank.Questions), "officialSource": s.bank.OfficialSource, "updatesSource": s.bank.UpdatesSource})
 		return
+	case r.Method == "GET" && r.URL.Path == "/api/questions":
+		// This is intentionally transparent: learners can review the exact source
+		// material, accepted answers, and study explanations used by this app.
+		writeJSON(w, 200, s.bank.Questions)
+		return
 	case r.Method == "GET" && r.URL.Path == "/api/current":
 		writeJSON(w, 200, s.store.active().Current)
 		return
@@ -82,7 +88,7 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 		for i := range history {
 			for j := range history[i].Result.Items {
 				item := &history[i].Result.Items[j]
-				if item.Explanation == "" {
+				if item.Explanation == "" || strings.HasPrefix(item.Explanation, "USCIS accepts answers such as") {
 					if q := s.question(item.Question.ID); q != nil {
 						item.Explanation = q.Explanation
 					}
@@ -372,7 +378,7 @@ func (s *server) api(w http.ResponseWriter, r *http.Request) {
 			writeJSON(w, 500, map[string]string{"error": err.Error()})
 			return
 		}
-		writeJSON(w, 200, map[string]any{"answerSubmitted": session.AnswerSubmitted, "correct": correct})
+		writeJSON(w, 200, map[string]any{"answerSubmitted": session.AnswerSubmitted, "answerCorrect": session.AnswerCorrect, "correct": correct})
 		return
 	}
 	if r.Method == "POST" && len(parts) == 5 && parts[3] == "reveal" {

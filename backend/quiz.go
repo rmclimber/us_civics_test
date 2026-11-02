@@ -61,6 +61,7 @@ type Session struct {
 	SelfGrades      map[int]bool            `json:"selfGrades"`
 	Revealed        map[int]bool            `json:"revealed"`
 	AnswerSubmitted map[int]bool            `json:"answerSubmitted,omitempty"`
+	AnswerCorrect   map[int]bool            `json:"answerCorrect,omitempty"`
 	ResolvedDynamic map[int]bool            `json:"resolvedDynamic,omitempty"`
 	Submitted       bool                    `json:"submitted"`
 	Created         time.Time               `json:"created"`
@@ -125,7 +126,14 @@ func displayOptionText(answer string) string {
 			}
 		}
 	}
-	return strings.Join(strings.Fields(text.String()), " ")
+	// USCIS sometimes appends an editorial note in square brackets (for
+	// example, other acceptable locations). It belongs in the official answer
+	// record, but would disclose too much in a multiple-choice option.
+	visible := text.String()
+	if start := strings.Index(visible, "["); start >= 0 {
+		visible = visible[:start]
+	}
+	return strings.Join(strings.Fields(visible), " ")
 }
 func makeSession(bank QuestionBank, order, practiceMode, gradingMode string, count int) (*Session, error) {
 	if practiceMode != "multiple-choice" && practiceMode != "oral" {
@@ -178,12 +186,15 @@ func makeSessionQuestions(qs []Question, order, practiceMode, gradingMode string
 	if gradingMode != "at-end" && gradingMode != "as-you-go" && gradingMode != "self-graded" {
 		return nil, errors.New("invalid grading mode")
 	}
-	s := &Session{ID: newID(), Mode: practiceMode, GradingMode: gradingMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, AnswerSubmitted: map[int]bool{}, ResolvedDynamic: map[int]bool{}, Created: time.Now()}
+	s := &Session{ID: newID(), Mode: practiceMode, GradingMode: gradingMode, Order: order, Questions: qs, Correct: map[int]map[string]bool{}, Responses: map[int][]string{}, SelfGrades: map[int]bool{}, Revealed: map[int]bool{}, AnswerSubmitted: map[int]bool{}, AnswerCorrect: map[int]bool{}, ResolvedDynamic: map[int]bool{}, Created: time.Now()}
 	for _, q := range qs {
 		if _, ok := resolved[q.ID]; ok {
 			s.ResolvedDynamic[q.ID] = true
 		}
 		p := PresentedQuestion{ID: q.ID, Question: q.Question, Category: q.Category, RequiredAnswerCount: q.RequiredAnswerCount, Dynamic: q.DynamicAnswer != nil, Explanation: q.Explanation}
+		if q.DynamicAnswer != nil && resolved[q.ID] != nil {
+			p.Explanation = "You previously confirmed the answer is " + strings.Join(q.AcceptableAnswers, " · ") + ". This answer may change, so verify the most recent official information before your interview."
+		}
 		if practiceMode == "multiple-choice" {
 			answers := shuffledAnswers(q.AcceptableAnswers, q.RequiredAnswerCount)
 			options := make([]Option, 0, 4)
@@ -294,6 +305,7 @@ func submitAnswer(s *Session, qid int) (bool, error) {
 		}
 	}
 	s.AnswerSubmitted[qid] = true
+	s.AnswerCorrect[qid] = correct
 	return correct, nil
 }
 func selfGrade(s *Session, qid int, correct bool) error {

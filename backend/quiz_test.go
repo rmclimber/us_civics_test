@@ -161,6 +161,9 @@ func TestDisplayOptionText(t *testing.T) {
 	if got := displayOptionText("Doubled the size of the United States (Louisiana Purchase)"); got != "Doubled the size of the United States" {
 		t.Fatalf("unexpected display text: %q", got)
 	}
+	if got := displayOptionText("Liberty Island [Also acceptable are New Jersey, near New York City]"); got != "Liberty Island" {
+		t.Fatalf("bracketed editorial note was shown: %q", got)
+	}
 }
 
 func TestDistractorsUseDisplayText(t *testing.T) {
